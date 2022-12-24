@@ -18,6 +18,8 @@ class hub{
     const int port_m_2 = pin_m_2;
 };
 
+ThreadController controll = ThreadController();
+
 /*
 //main protothread
 pt ptMain;
