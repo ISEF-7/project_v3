@@ -1,6 +1,7 @@
-# Arduino Project pre _vers3
+# Developing Safe and Efficient Self-Driving Vehicles’ Operation through Sensor Data
 
-## What is it about?
+## 🚉 Platform Tools
+PlatformIO 
 ## 🏗️ Materials:
 - [Arduino Uno Rev3](https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/ref=sr_1_1_sspa?crid=18DWQZCT5ALLQ&keywords=arduino+uno&qid=1671903939&sprefix=arduino+uno%2Caps%2C101&sr=8-1-spons&psc=1&smid=AA57DDZKZUZDLspLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzMFNYRUxOUVUwU0FMJmVuY3J5cHRlZElkPUEwNzMyNDUzREcxREZJMEw3OUNNJmVuY3J5cHRlZEFkSWQ9QTA5NDYzMzdOV0RGVklGUERMS1Emd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl)
 - RPLidar A1
