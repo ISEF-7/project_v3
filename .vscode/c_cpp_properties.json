@@ -10,6 +10,7 @@
             "includePath": [
                 "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/include",
                 "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/src",
+                "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/RPLidarDriver",
                 "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/Servo/src",
                 "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoThread",
                 "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoJson/src",
@@ -28,6 +29,7 @@
                 "path": [
                     "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/include",
                     "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/src",
+                    "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/RPLidarDriver",
                     "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/Servo/src",
                     "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoThread",
                     "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoJson/src",
