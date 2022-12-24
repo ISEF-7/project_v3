@@ -1,9 +1,4 @@
-#include <Arduino.h>
-#include <ArduinoSTL.h> //https://registry.platformio.org/libraries/mike-matera/ArduinoSTL 
-#include <ArduinoJson.h> //https://registry.platformio.org/libraries/bblanchon/ArduinoJson 
-#include <StaticThreadController.h> //https://registry.platformio.org/libraries/ivanseidel/Thread //XXX look more into Ivan Seidel 
-#include <RPLidar.h> //https://github.com/robopeak/rplidar_arduino
-#include <Servo.h> //https://registry.platformio.org/libraries/arduino-libraries/Servo
+#include "common.h"
 
 using namespace std;
 
@@ -15,12 +10,6 @@ class hub{
     //const int port_l = ; //TODO set the values
     //const int port_m1 = ;
     //const int port_m2 = ;
-};
-
-class RoadData{
-  public:
-    vector<vector<float>> roadData_ADJMTX{};
-
 };
 
 /*
@@ -46,35 +35,6 @@ int SLAMThread(struct pt* pt){
   PT_END(pt);
 }
 */
-
-class location{
-  public:
-    string name;
-    int node_position;
-};
-
-
-class node : location{
-  public:
-
-};
-
-class road{
-  public:
-    vector<node> body;
-    float length;
-    vector<int> lanes;
-    float speedLimit; 
-};
-
-
-
-struct roadData{
-  vector<vector<float>> adjmtx_data;
-  location i_location;
-  location destination;
-};
-
 ///////
 
 bool reachedDestination;
@@ -150,11 +110,6 @@ void boot_hub(hub h){
 
 ///////
 
-
-
-
-///////
-
 void setup() {
   cout << "SETUP ///////";
   cout << "Booting";
@@ -166,5 +121,5 @@ void setup() {
 ///////
 
 void loop() {
-
+  
 }
