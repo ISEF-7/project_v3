@@ -28,7 +28,6 @@ class RoadData{
 pt ptMain;
 int MainThread(struct pt* pt){
     PT_BEGIN(pt);
-
     for(;;){
       //TODO main thread execution
     }
@@ -41,7 +40,6 @@ int MainThread(struct pt* pt){
 pt ptSLAM;
 int SLAMThread(struct pt* pt){
   PT_BEGIN(pt);
-
     for(;;){
       //TODO main thread execution
     }
