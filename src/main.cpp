@@ -13,9 +13,10 @@ using namespace std;
 class hub{
   public:
     //port references for devices
-    const int port_l = pin_L; //TODO set the values
-    const int port_m_1 = pin_m_1;
-    const int port_m_2 = pin_m_2;
+    const int Pin_l = pin_L; //TODO set the values
+    const int Pin_m_1 = pin_m_1;
+    const int Pin_m_2 = pin_m_2;
+    //const int port_blah = pin_blah
 };
 
 ThreadController controll = ThreadController();
