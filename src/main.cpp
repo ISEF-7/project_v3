@@ -18,6 +18,13 @@ class hub{
     const int Pin_m_2 = pin_m_2;
     //const int port_blah = pin_blah
 };
+void boot_hub(hub h){
+  cout << "Booting hub...";
+  hub_moduleCheck(h);
+  
+  //TODO object configuration
+}
+void hub_moduleCheck(hub h){}
 
 ThreadController controll = ThreadController();
 
@@ -62,6 +69,12 @@ hub* HUB = &Hub;
 ///////
 void shutdown(){} //TODO shutdown function
 
+void boot_servo(vector<Servo> servolist){
+  for (int i=0; (unsigned)i<servolist.size(); i++){
+    cout << "Booting Servo m" << i << " ...";
+    servo_moduleCheck(servolist.at(i));
+  };
+}
 void servo_moduleCheck(Servo servo){
   //XXX test if comparing objects by runtime memory address works, alternative is to do nested classes, and the base class has the name
   if (&servo == &m1){
@@ -84,6 +97,13 @@ void servo_moduleCheck(Servo servo){
   }
 }
 
+
+void boot_lidar(RPLidar lidar){
+  cout << "Booting RPLidar...";
+  lidar_moduleCheck(lidar);
+  //TODO object configuration
+}
+
 void lidar_moduleCheck(RPLidar lidar){
   rplidar_response_device_info_t info;
   if (IS_OK(lidar.getDeviceInfo(info, 100)) == true && IS_OK(lidar.waitPoint()) == true){cout<< "RPLidar l: OK";} //XXX check lidar variables
@@ -93,32 +113,6 @@ void lidar_moduleCheck(RPLidar lidar){
   }
 }
 
-void hub_moduleCheck(hub h){
-  
-}
-
-///////
-
-void boot_servo(vector<Servo> servolist){
-  for (int i=0; (unsigned)i<servolist.size(); i++){
-    cout << "Booting Servo m" << i << " ...";
-    servo_moduleCheck(servolist.at(i));
-  };
-}
-void boot_lidar(RPLidar lidar){
-  cout << "Booting RPLidar...";
-  lidar_moduleCheck(lidar);
-  //TODO object configuration
-}
-void boot_hub(hub h){
-  cout << "Booting hub...";
-  hub_moduleCheck(h);
-  
-  //TODO object configuration
-}
-
-///////
-
 void setup() {
   cout << "SETUP ///////";
   cout << "Booting";
@@ -126,8 +120,6 @@ void setup() {
   boot_lidar(l);
   boot_servo({m1,m2});
 }
-
-///////
 
 void loop() {
   
