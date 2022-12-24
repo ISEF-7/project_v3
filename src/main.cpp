@@ -1,5 +1,11 @@
 #include "common.h"
 
+//define pins
+#define pin_L 0
+#define pin_m_1 0
+#define pin_m_2 0
+//#define blahblahblah (someint)
+
 using namespace std;
 
 ///////
@@ -7,9 +13,9 @@ using namespace std;
 class hub{
   public:
     //port references for devices
-    //const int port_l = ; //TODO set the values
-    //const int port_m1 = ;
-    //const int port_m2 = ;
+    const int port_l = pin_L; //TODO set the values
+    const int port_m_1 = pin_m_1;
+    const int port_m_2 = pin_m_2;
 };
 
 /*
