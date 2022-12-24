@@ -1,7 +1,8 @@
 #include "common.h"
+#include <functional>
 
 //define pins
-#define pin_L 0
+#define pin_L 0 //TODO set the values
 #define pin_m_1 0
 #define pin_m_2 0
 //#define blahblahblah (someint)
@@ -10,24 +11,22 @@ using namespace std;
 
 ///////
 
-class hub{
+class Hub{
   public:
-    //port references for devices
-    const int Pin_l = pin_L; //TODO set the values
+    const int Pin_l = pin_L; 
     const int Pin_m_1 = pin_m_1;
     const int Pin_m_2 = pin_m_2;
-    //const int port_blah = pin_blah
 };
-void boot_hub(hub h){
+void hub_moduleCheck(Hub h){}
+
+void boot_hub(Hub h){
   cout << "Booting hub...";
   hub_moduleCheck(h);
   
   //TODO object configuration
 }
-void hub_moduleCheck(hub h){}
 
 ThreadController controll = ThreadController();
-
 /*
 //main protothread
 pt ptMain;
@@ -53,28 +52,29 @@ int SLAMThread(struct pt* pt){
 */
 ///////
 
-bool reachedDestination;
 short completePercent;
-bool status;
 
 RPLidar l;
 RPLidar* L = &l;
+bool lstatus;
+
 Servo m1;
 Servo* M1 = &m1;
+bool m1status;
+
 Servo m2;
 Servo* M2 = &m2;
-hub Hub;
-hub* HUB = &Hub;
+bool m2status;
+
+Hub hub;
+Hub* HUB = &hub;
+bool status;
 
 ///////
-void shutdown(){} //TODO shutdown function
+void shutdown(Servo obj){if (&obj == &m1){m1status = false;}if (&obj == &m2){m2status = false;}}
+void shutdown(RPLidar obj){if (&obj == &l){lstatus = false;}} 
+void shutdown(Hub obj){if (&obj == &hub){status = false;}}
 
-void boot_servo(vector<Servo> servolist){
-  for (int i=0; (unsigned)i<servolist.size(); i++){
-    cout << "Booting Servo m" << i << " ...";
-    servo_moduleCheck(servolist.at(i));
-  };
-}
 void servo_moduleCheck(Servo servo){
   //XXX test if comparing objects by runtime memory address works, alternative is to do nested classes, and the base class has the name
   if (&servo == &m1){
@@ -83,7 +83,7 @@ void servo_moduleCheck(Servo servo){
     }
     else{
       cout << "Servo m1: ERR";
-      shutdown();
+      shutdown(servo);
     }
   }
   if (&servo == &m2){
@@ -92,16 +92,15 @@ void servo_moduleCheck(Servo servo){
     }
     else{
        cout << "Servo m2:" "ERR";
-       shutdown();
+       shutdown(servo);
     }
   }
 }
-
-
-void boot_lidar(RPLidar lidar){
-  cout << "Booting RPLidar...";
-  lidar_moduleCheck(lidar);
-  //TODO object configuration
+void boot_servo(vector<Servo> servolist){
+  for (int i=0; (unsigned)i<servolist.size(); i++){
+    cout << "Booting Servo m" << i << " ...";
+    servo_moduleCheck(servolist.at(i));
+  };
 }
 
 void lidar_moduleCheck(RPLidar lidar){
@@ -109,14 +108,20 @@ void lidar_moduleCheck(RPLidar lidar){
   if (IS_OK(lidar.getDeviceInfo(info, 100)) == true && IS_OK(lidar.waitPoint()) == true){cout<< "RPLidar l: OK";} //XXX check lidar variables
   else{
     cout << "RPLidar l: ERR"; 
-    shutdown();
+    shutdown(lidar);
   }
 }
+void boot_lidar(RPLidar lidar){
+  cout << "Booting RPLidar...";
+  lidar_moduleCheck(lidar);
+  //TODO object configuration
+}
+
 
 void setup() {
   cout << "SETUP ///////";
   cout << "Booting";
-  boot_hub(Hub);
+  boot_hub(hub);
   boot_lidar(l);
   boot_servo({m1,m2});
 }
