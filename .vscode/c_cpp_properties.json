@@ -1,0 +1,64 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/include",
+                "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/src",
+                "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/Servo/src",
+                "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoThread",
+                "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoJson/src",
+                "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoSTL/src",
+                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/variants/standard",
+                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/include",
+                    "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/src",
+                    "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/Servo/src",
+                    "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoThread",
+                    "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoJson/src",
+                    "/Users/edwardkim/Documents/PlatformIO/Projects/project_v3/.pio/libdeps/uno/ArduinoSTL/src",
+                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "/Users/edwardkim/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=60105",
+                "ARDUINO_AVR_UNO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega328P__",
+                ""
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "/Users/edwardkim/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
+            "compilerArgs": [
+                "-mmcu=atmega328p",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
