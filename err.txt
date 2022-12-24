@@ -1,0 +1,61 @@
+Processing uno (platform: atmelavr; board: uno; framework: arduino)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Error: Traceback (most recent call last):
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/__main__.py", line 102, in main
+    cli()  # pylint: disable=no-value-for-parameter
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/click/core.py", line 1130, in __call__
+    return self.main(*args, **kwargs)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/click/core.py", line 1055, in main
+    rv = self.invoke(ctx)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/cli.py", line 71, in invoke
+    return super().invoke(ctx)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/click/core.py", line 1657, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/click/core.py", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/click/decorators.py", line 26, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/run/cli.py", line 144, in cli
+    process_env(
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/run/cli.py", line 201, in process_env
+    result = {"env": name, "duration": time(), "succeeded": ep.process()}
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/run/processor.py", line 83, in process
+    install_project_env_dependencies(
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/package/commands/install.py", line 132, in install_project_env_dependencies
+    _install_project_env_libraries(project_env, options),
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/package/commands/install.py", line 241, in _install_project_env_libraries
+    spec = PackageSpec(library)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/package/meta.py", line 184, in __init__
+    self._parse(self.raw)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/package/meta.py", line 291, in _parse
+    raw = parser(raw)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/package/meta.py", line 316, in _parse_requirements
+    self.requirements = tokens[1].strip()
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/platformio/package/meta.py", line 231, in requirements
+    else semantic_version.SimpleSpec(str(value))
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/semantic_version/base.py", line 647, in __init__
+    self.clause = self._parse_to_clause(expression)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/semantic_version/base.py", line 1043, in _parse_to_clause
+    return cls.Parser.parse(expression)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/semantic_version/base.py", line 1064, in parse
+    clause &= cls.parse_block(block)
+  File "/Users/USER/.platformio/penv/lib/python3.10/site-packages/semantic_version/base.py", line 1117, in parse_block
+    raise ValueError("Invalid simple spec: %r" % expr)
+ValueError: Invalid simple spec: '^0.0.0-alpha+sha.1a4e504c5f'
+
+============================================================
+
+An unexpected error occurred. Further steps:
+
+* Verify that you have the latest version of PlatformIO using
+  `pip install -U platformio` command
+
+* Try to find answer in FAQ Troubleshooting section
+  https://docs.platformio.org/page/faq/index.html
+
+* Report this problem to the developers
+  https://github.com/platformio/platformio-core/issues
+
+============================================================
