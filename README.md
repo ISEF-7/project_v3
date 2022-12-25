@@ -29,4 +29,4 @@
 
 ## ⚙️ Inner Workings
 
-<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embedded/17db0862-e1c6-476d-8eec-251675a46a13" id=".YSh2G2ThX5O"></iframe></div>
+https://lucid.app/lucidchart/17db0862-e1c6-476d-8eec-251675a46a13/edit?invitationId=inv_3b123658-7221-4ad5-9a06-bda1fff104f5
