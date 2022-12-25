@@ -1,5 +1,6 @@
 #include "common.h"
-#include <functional>
+
+//TODO SET SERIAL TO COM6
 
 //define pins
 #define pin_L 0 //TODO set the values
@@ -10,8 +11,6 @@
 using namespace std;
 
 ///////
-
-void print_tick(int i){cout << pdt.tick << i;}
 
 struct printData{  // to remove printing to increasing efficiency
 
@@ -58,6 +57,7 @@ void boot_hub(Hub h){
 //////
 
 printData pdt; 
+void print_tick(int i){cout << pdt.tick << i;}
 
 ThreadController tc = ThreadController();
 
@@ -73,6 +73,7 @@ void m1CB(){}
 Thread servo_m_2 = Thread();
 void m2CB(){}
 
+//TODO init threading
 
 RPLidar l; RPLidar* L = &l; bool lstatus;
 Servo m1; Servo* M1 = &m1; bool m1status;
@@ -124,7 +125,8 @@ void lidar_moduleCheck(RPLidar lidar){
 void boot_lidar(RPLidar lidar){
   cout << pdt.lb;
   lidar_moduleCheck(lidar);
-  //TODO object configuration
+
+
 }
 
 //////

@@ -21,9 +21,12 @@
 - Arduino 
 - [ArduinoSTL@^1.3.3](//https://registry.platformio.org/libraries/mike-matera/ArduinoSTL)
 - [ArduinoJson@^6.19.4](https://registry.platformio.org/libraries/bblanchon/ArduinoJson)
-- [Thread@^2.1.1](https://registry.platformio.org/libraries/ivanseidel/Thread)
-- [RPLidar@^1.1.8](https://github.com/robopeak/rplidar_arduino) (Seemingly only available in GitHub and not in the PlatformIO Library Registry)
-- [Servo.h](https://registry.platformio.org/libraries/arduino-libraries/Servo)
+- [Thread@^0.0.0-alpha+sha.dac3874d28](https://registry.platformio.org/libraries/ivanseidel/Thread)
+- [RPLidar](https://github.com/robopeak/rplidar_arduino) (Seemingly only available in GitHub and not in the PlatformIO Library Registry)
+- [Servo@^1.1.8](https://registry.platformio.org/libraries/arduino-libraries/Servo)
+- [SD@^1.2.4](https://registry.platformio.org/libraries/arduino-libraries/SD)
+- [LinkedLists@^0.0.0-alpha+sha.dac3874d28](https://registry.platformio.org/libraries/ivanseidel/LinkedList)
 
 ## ⚙️ Inner Workings
 
+![Inner Workings Logic Flow Chart](https://raw.githubusercontent.com/ISEF-7/project_v3/v3.1.1/images/fc.png?raw=true)

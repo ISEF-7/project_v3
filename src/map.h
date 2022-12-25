@@ -1,6 +1,5 @@
 #ifndef MAP_H
-#define MAP_H
-
+#define MAP_H 
 
 using namespace std;
 
@@ -9,7 +8,6 @@ class location{
     string name;
     int node_position;
 };
-
 
 class node : location{
   public:
@@ -27,9 +25,10 @@ class road{
 
 
 struct roadData{
-  vector<vector<float>> adjmtx_data;
+  vector<vector<float>> lengthmtx_data;
   location i_location;
   location destination;
+  string fileDir;
 };
 
 #endif
