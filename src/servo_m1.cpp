@@ -1,11 +1,9 @@
 #include "common.h"
-#include "map.h"
 #include "m.h"
 
 using namespace std;
 
-
-void m1(){
-
+LinkedList<instruction> _m1(road_act d){
+    //grab l_mtx from d
+    //convert it to instructions
 }
-

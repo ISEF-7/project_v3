@@ -1,9 +1,13 @@
-#ifndef M_H
-#define M_H
-
+#pragma once
 struct road_act{
     float speed;
     int lane;
+    float next_turndeg;
 };
 
-#endif
+class instruction{
+    public:
+        float w;
+        float t;
+};
+

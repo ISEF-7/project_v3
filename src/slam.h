@@ -1,7 +1,6 @@
-#ifndef SLAM_H
-#define SLAM_H
+#pragma once
 
 #include "m.h"
 #include "map.h"
+#include "l.h"
 
-#endif

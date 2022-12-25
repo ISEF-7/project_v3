@@ -1,5 +1,5 @@
-#ifndef MAP_H
-#define MAP_H 
+#pragma once
+#include "m.h"
 
 using namespace std;
 
@@ -35,5 +35,3 @@ struct roadData{
   location destination;
   string fileDir;
 };
-
-#endif

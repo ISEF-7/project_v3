@@ -1,4 +1,8 @@
 #include "common.h"
+#include "m.h"
+#include "map.h"
+#include "l.h"
+#include "slam.h"
 
 //TODO SET SERIAL TO COM6
 
@@ -61,17 +65,17 @@ void print_tick(int i){cout << pdt.tick << i;}
 
 ThreadController tc = ThreadController();
 
-Thread tmain = Thread();
-void tmainCB(){}
+Thread* tmain = new Thread();
+void tmain_exec(){}
 
-Thread tlidar = Thread();
-void tlidarCB(){}
+Thread* tlidar = new Thread();
+void tlidar_exec(){}
 
-Thread servo_m_1 = Thread();
-void m1CB(){}
+Thread* t_m_1 = new Thread();
+void m1_exec(LinkedList<instruction>){}
 
-Thread servo_m_2 = Thread();
-void m2CB(){}
+Thread* t_m_2 = new Thread();
+void m2_exec(LinkedList<instruction>){}
 
 //TODO init threading
 
@@ -135,15 +139,31 @@ void setup() {
   cout << pdt.SETUP;
   cout << pdt.b;
 
+  tmain->onRun(tmain_exec);
+  tlidar->onRun(tlidar_exec);
+  //t_m_1->onRun(m1_exec());
+  //t_m_2->onRun(m2_exec());
+
+
+
+  tc.add(tmain);
+  tc.add(tlidar);
+  tc.add(t_m_1);
+  tc.add(t_m_2);
+
   Serial.begin(9600); //baud rate
 
   boot_hub(hub);
   boot_lidar(l);
   boot_servo({m1,m2});
 
-
+  
 }
 
 void loop() {
+  /*
+  int i = 0;
+  print_tick(++i);
+  */
   tc.run();
 }
