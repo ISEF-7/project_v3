@@ -1,5 +1,6 @@
 #include "common.h"
-#include <functional>
+
+//TODO SET SERIAL TO COM6
 
 //define pins
 #define pin_L 0 //TODO set the values
@@ -10,7 +11,6 @@
 using namespace std;
 
 ///////
-
 
 struct printData{  // to remove printing to increasing efficiency
 
@@ -73,6 +73,7 @@ void m1CB(){}
 Thread servo_m_2 = Thread();
 void m2CB(){}
 
+//TODO init threading
 
 RPLidar l; RPLidar* L = &l; bool lstatus;
 Servo m1; Servo* M1 = &m1; bool m1status;
