@@ -29,4 +29,4 @@
 
 ## ⚙️ Inner Workings
 
-https://lucid.app/lucidchart/17db0862-e1c6-476d-8eec-251675a46a13/edit?invitationId=inv_3b123658-7221-4ad5-9a06-bda1fff104f5
+![Inner Workings Logic Flow Chart](https://raw.githubusercontent.com/ISEF-7/project_v3/v3.1.1/images/fc.png?raw=true)
