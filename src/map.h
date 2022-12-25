@@ -22,10 +22,15 @@ class road{
     float speedLimit; 
 };
 
-
+struct l_a{ //NOTE clockwise angle's initial side is the segment itself
+  float angle;
+  float length;
+};
 
 struct roadData{
-  vector<vector<float>> lengthmtx_data;
+  vector<vector<l_a>> la_mtx_data;
+  vector<vector<float>> l_mtx_data;
+  vector<vector<float>> a_mtx_data;
   location i_location;
   location destination;
   string fileDir;

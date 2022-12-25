@@ -6,7 +6,7 @@ using namespace std;
 
 vector<road_act> actonslist;
 
-roadData convert(File sdFILE){
+roadData convert_f_TO_rd(File sdFILE){
     //TODO convert algorithm
 }
 
