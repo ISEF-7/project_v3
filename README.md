@@ -18,12 +18,12 @@
 
 ## 🛠️ Dependencies 
 
-> Arduino 
-> [ArduinoSTL@^1.3.3](//https://registry.platformio.org/libraries/mike-matera/ArduinoSTL)
-> [ArduinoJson@^6.19.4](https://registry.platformio.org/libraries/bblanchon/ArduinoJson)
-> [Thread@^2.1.1](https://registry.platformio.org/libraries/ivanseidel/Thread)
-> [RPLidar@^1.1.8](https://github.com/robopeak/rplidar_arduino) (Seemingly only available in GitHub and not in the PlatformIO Library Registry)
-> [Servo.h](https://registry.platformio.org/libraries/arduino-libraries/Servo)
+- Arduino 
+- [ArduinoSTL@^1.3.3](//https://registry.platformio.org/libraries/mike-matera/ArduinoSTL)
+- [ArduinoJson@^6.19.4](https://registry.platformio.org/libraries/bblanchon/ArduinoJson)
+- [Thread@^2.1.1](https://registry.platformio.org/libraries/ivanseidel/Thread)
+- [RPLidar@^1.1.8](https://github.com/robopeak/rplidar_arduino) (Seemingly only available in GitHub and not in the PlatformIO Library Registry)
+- [Servo.h](https://registry.platformio.org/libraries/arduino-libraries/Servo)
 
 ## ⚙️ Inner Workings
 
