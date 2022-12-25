@@ -35,3 +35,6 @@ struct roadData{
   location destination;
   string fileDir;
 };
+
+roadData convert_f_TO_rd(File sdFILE);
+vector<road_act> shortestpath_algo(roadData rd);

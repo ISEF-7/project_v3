@@ -18,7 +18,7 @@ using namespace std;
 
 struct printData{  // to remove printing to increasing efficiency
 
-  short completePercent; 
+  short completePercent;
 
   string m1ok = "Servo m1: OK";
   string m1er = "Servo m1: ERR";
@@ -72,10 +72,10 @@ Thread* tlidar = new Thread();
 void tlidar_exec(){}
 
 Thread* t_m_1 = new Thread();
-void m1_exec(LinkedList<instruction>){}
+void m1_exec(LinkedList<instruction> instr){}
 
 Thread* t_m_2 = new Thread();
-void m2_exec(LinkedList<instruction>){}
+void m2_exec(LinkedList<instruction> instr){}
 
 //TODO init threading
 
@@ -135,14 +135,18 @@ void boot_lidar(RPLidar lidar){
 
 //////
 
+File workingFile;
+
 void setup() {
+  vector<road_act> vector_road_act = shortestpath_algo(convert_f_TO_rd(workingFile));
+
   cout << pdt.SETUP;
   cout << pdt.b;
 
   tmain->onRun(tmain_exec);
   tlidar->onRun(tlidar_exec);
-  //t_m_1->onRun(m1_exec());
-  //t_m_2->onRun(m2_exec());
+  //t_m_1->onRun(m1_exec(_m1(vector_road_act))); //XXX bug
+  //t_m_2->onRun(m2_exec(_m2(vector_road_act)));
 
 
 
