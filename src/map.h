@@ -27,9 +27,14 @@ class road{
 
 
 struct roadData{
-  vector<vector<float>> adjmtx_data;
+  vector<vector<float>> lengthmtx_data;
   location i_location;
   location destination;
 };
+
+roadData shortestpathAlgorithm(){
+
+}
+
 
 #endif

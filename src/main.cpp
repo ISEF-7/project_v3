@@ -11,7 +11,6 @@ using namespace std;
 
 ///////
 
-void print_tick(int i){cout << pdt.tick << i;}
 
 struct printData{  // to remove printing to increasing efficiency
 
@@ -58,6 +57,7 @@ void boot_hub(Hub h){
 //////
 
 printData pdt; 
+void print_tick(int i){cout << pdt.tick << i;}
 
 ThreadController tc = ThreadController();
 
@@ -124,7 +124,8 @@ void lidar_moduleCheck(RPLidar lidar){
 void boot_lidar(RPLidar lidar){
   cout << pdt.lb;
   lidar_moduleCheck(lidar);
-  //TODO object configuration
+
+
 }
 
 //////

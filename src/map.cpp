@@ -3,4 +3,6 @@
 
 using namespace std;
 
-
+roadData shortestpathAlgorithm(File sdFILE){
+    //TODO shortestpath algorithm
+}
