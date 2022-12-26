@@ -1,4 +1,8 @@
 #include "common.h"
+#include "m.h"
+#include "map.h"
+#include "l.h"
+#include "slam.h"
 
 //TODO SET SERIAL TO COM6
 
@@ -14,7 +18,7 @@ using namespace std;
 
 struct printData{  // to remove printing to increasing efficiency
 
-  short completePercent; 
+  short completePercent;
 
   string m1ok = "Servo m1: OK";
   string m1er = "Servo m1: ERR";
@@ -56,22 +60,52 @@ void boot_hub(Hub h){
 
 //////
 
+File workingFile;
+vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(workingFile);
+vector<road_act> B = shortestpath_algo(la_mtx_data);
+vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(B);
+vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(B);
+
+//////
+
 printData pdt; 
 void print_tick(int i){cout << pdt.tick << i;}
 
 ThreadController tc = ThreadController();
 
-Thread tmain = Thread();
-void tmainCB(){}
+Thread* tmain = new Thread();
+void tmain_exec(){
+	Serial.println(millis());
 
-Thread tlidar = Thread();
-void tlidarCB(){}
+}
 
-Thread servo_m_1 = Thread();
-void m1CB(){}
+Thread* tlidar = new Thread();
+void tlidar_exec(){
+	Serial.println(millis());
 
-Thread servo_m_2 = Thread();
-void m2CB(){}
+}
+
+Thread* t_m_1 = new Thread();
+void m1_exec(){
+  vector<instruction> m1i = MOTOR_1_INSTRUCTIONS;
+  int i =0;
+  i++;
+  cout << i;
+  //TODO
+	Serial.println(millis());
+
+
+}
+Thread* t_m_2 = new Thread();
+void m2_exec(){
+  vector<instruction> m2i = MOTOR_2_INSTRUCTIONS;
+  int i =0;
+  i++;
+  cout << i;
+  //TODO
+	Serial.println(millis());
+
+}
 
 //TODO init threading
 
@@ -131,9 +165,22 @@ void boot_lidar(RPLidar lidar){
 
 //////
 
-void setup() {
+void setup(){
   cout << pdt.SETUP;
   cout << pdt.b;
+
+  tmain->onRun(tmain_exec);
+  tlidar->onRun(tlidar_exec);
+
+  t_m_1->onRun(m1_exec);
+  t_m_2->onRun(m2_exec);
+
+
+
+  tc.add(tmain);
+  tc.add(tlidar);
+  tc.add(t_m_1);
+  tc.add(t_m_2);
 
   Serial.begin(9600); //baud rate
 
@@ -141,9 +188,24 @@ void setup() {
   boot_lidar(l);
   boot_servo({m1,m2});
 
-
+  
 }
 
 void loop() {
-  tc.run();
+  /*
+  int i = 0;
+  print_tick(++i);
+  */
+  if (tmain->shouldRun()){
+    tmain->run();
+  }
+  if (tlidar->shouldRun()){
+    tlidar->run();
+  }
+  if (t_m_1->shouldRun()){
+    t_m_1->run();
+  }
+  if (t_m_2->shouldRun()){
+    t_m_2->run();
+  }
 }

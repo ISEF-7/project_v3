@@ -1,5 +1,4 @@
-#ifndef COMMON_H
-#define COMMON_H
+#pragma once
 
 #include <Arduino.h>
 #include <ArduinoSTL.h> //https://registry.platformio.org/libraries/mike-matera/ArduinoSTL 
@@ -13,5 +12,3 @@
 #include <LinkedList.h> //https://registry.platformio.org/libraries/ivanseidel/LinkedList/installation
 
 using namespace std;
-
-#endif
