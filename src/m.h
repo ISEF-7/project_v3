@@ -1,5 +1,4 @@
-#ifndef M_H
-#define M_H
+#pragma once
 
 #include "common.h"
 
@@ -15,7 +14,5 @@ class instruction{
         float t;
 };
 
-LinkedList<instruction> _m1(road_act d);
-LinkedList<instruction> _m2(road_act d);
-
-#endif
+vector<instruction> _m1(vector<road_act> d);
+vector<instruction> _m2(vector<road_act> d);

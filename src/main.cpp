@@ -60,22 +60,52 @@ void boot_hub(Hub h){
 
 //////
 
+File workingFile;
+vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(workingFile);
+vector<road_act> B = shortestpath_algo(la_mtx_data);
+vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(B);
+vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(B);
+
+//////
+
 printData pdt; 
 void print_tick(int i){cout << pdt.tick << i;}
 
 ThreadController tc = ThreadController();
 
 Thread* tmain = new Thread();
-void tmain_exec(){}
+void tmain_exec(){
+	Serial.println(millis());
+
+}
 
 Thread* tlidar = new Thread();
-void tlidar_exec(){}
+void tlidar_exec(){
+	Serial.println(millis());
+
+}
 
 Thread* t_m_1 = new Thread();
-void m1_exec(LinkedList<instruction> instr){}
+void m1_exec(){
+  vector<instruction> m1i = MOTOR_1_INSTRUCTIONS;
+  int i =0;
+  i++;
+  cout << i;
+  //TODO
+	Serial.println(millis());
 
+
+}
 Thread* t_m_2 = new Thread();
-void m2_exec(LinkedList<instruction> instr){}
+void m2_exec(){
+  vector<instruction> m2i = MOTOR_2_INSTRUCTIONS;
+  int i =0;
+  i++;
+  cout << i;
+  //TODO
+	Serial.println(millis());
+
+}
 
 //TODO init threading
 
@@ -135,18 +165,15 @@ void boot_lidar(RPLidar lidar){
 
 //////
 
-File workingFile;
-
-void setup() {
-  vector<road_act> vector_road_act = shortestpath_algo(convert_f_TO_rd(workingFile));
-
+void setup(){
   cout << pdt.SETUP;
   cout << pdt.b;
 
   tmain->onRun(tmain_exec);
   tlidar->onRun(tlidar_exec);
-  //t_m_1->onRun(m1_exec(_m1(vector_road_act))); //XXX bug
-  //t_m_2->onRun(m2_exec(_m2(vector_road_act)));
+
+  t_m_1->onRun(m1_exec);
+  t_m_2->onRun(m2_exec);
 
 
 
@@ -169,5 +196,16 @@ void loop() {
   int i = 0;
   print_tick(++i);
   */
-  tc.run();
+  if (tmain->shouldRun()){
+    tmain->run();
+  }
+  if (tlidar->shouldRun()){
+    tlidar->run();
+  }
+  if (t_m_1->shouldRun()){
+    t_m_1->run();
+  }
+  if (t_m_2->shouldRun()){
+    t_m_2->run();
+  }
 }
