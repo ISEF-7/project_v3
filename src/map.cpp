@@ -11,20 +11,27 @@ vector<vector<l_a>> convert_f_TO_rd(File sdFILE){
     //TODO convert algorithm
 }
 
-float** grab_length(vector<vector<l_a>> mtx, string grab){
+vector<vector<float>> grab_length(vector<vector<l_a>> mtx, string grab){
     int size = mtx.size();
-    float l_mtx[size][size];
-    for(unsigned i=0; i<size; i++ ){
+    vector<vector<float>> new_mtx;
+    for(unsigned i=0; i<(unsigned)size; i++ ){
         for (unsigned j=0; j<size; j++){
             if (grab == "length"){
-            l_mtx[i][j] = mtx[i][j].length;
+            new_mtx[i][j] = mtx[i][j].length;
             }
             if (grab == "angle"){
-            l_mtx[i][j] = mtx[i][j].angle;
+            new_mtx[i][j] = mtx[i][j].angle;
             }
         }
     }
+    return new_mtx;
 }
+
+/*
+convt_vect_array(vector<vector<float>> vect){ //TODO MAKE FUCNTION FOR CONVERTING 2D VECTOR INTO 2D ARRAY 
+
+}
+*/
 
 
 vector<road_act> shortestpath_algo(vector<vector<l_a>> mtx){
