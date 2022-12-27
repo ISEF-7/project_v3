@@ -1,3 +1,4 @@
+<img width = "150px" src = "https://img.shields.io/github/repo-size/ISEF-7/project_v3?label=Project%20Size&logo=google%20drive"> <img width = "110px" src = "https://img.shields.io/github/languages/count/ISEF-7/project_v3?logo=C%2B%2B&logoColor=blue"> <img width = "110px" src = "https://img.shields.io/github/languages/top/ISEF-7/project_v3?label=C%2B%2B&logo=c%2B%2B&logoColor=blue">
 # Developing Safe and Efficient Self-Driving Vehicles’ Operation through Sensor Data
 
 ## 🚉 Platform Tools
