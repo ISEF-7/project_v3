@@ -7,6 +7,10 @@
 //TODO SET SERIAL TO COM6
 
 //define pins
+#define pin_L 0 //TODO set the values
+#define pin_m_1 0
+#define pin_m_2 0
+
 //#define blahblahblah (someint)
 
 
@@ -51,8 +55,8 @@ struct printData{  // to remove printing to increasing efficiency
 
 //////
 
-File workingFile;
-vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(workingFile);
+string workingFile_path;
+vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(workingFile_path);
 vector<road_act> B = shortestpath_algo(la_mtx_data);
 vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(B);
 vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(B);
@@ -127,7 +131,7 @@ void boot_hub(Hub h){
 
 
 
-void servo_moduleCheck(Servo servo){
+void servo_moduleCheck(Servo servo){ //TODO combine modulecheck and boot void functions to 2 singular functions
   if (nameof(servo) == "m1"){
     if (m1.attached() == true){
       cout << pdt.m1ok;
@@ -197,9 +201,11 @@ void setup(){
 
   Serial.begin(9600); //baud rate
 
-  boot_hub(hub);
   boot_lidar(l);
   boot_servo({m1,m2});
+  boot_hub(hub);
+
+  cin >> workingFile_path;
 }
 
 void loop() {

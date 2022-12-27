@@ -1,7 +1,6 @@
 #include "common.h"
 #include "m.h"
 
-#define pin_m_2 0
 
 using namespace std;
 
