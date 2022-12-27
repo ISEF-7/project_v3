@@ -3,24 +3,11 @@
 
 using namespace std;
 
-class location{
-  public:
-    string name;
-    int node_position;
-};
+class location;
 
-class node : location{
-  public:
+class node;
 
-};
-
-class road{
-  public:
-    vector<node> body;
-    float length;
-    vector<int> lanes;
-    float speedLimit; 
-};
+class road;
 
 struct l_a{ //NOTE clockwise angle's initial side is the segment itself
   float angle;
@@ -28,6 +15,8 @@ struct l_a{ //NOTE clockwise angle's initial side is the segment itself
 };
 
 extern vector<vector<l_a>> la_mtx_data;
+extern SdFat sd;
+extern File file;
 
-vector<vector<l_a>> convert_f_TO_rd(File sdFILE);
+vector<vector<l_a>> convert_f_TO_rd(string sdFILE);
 vector<road_act> shortestpath_algo(vector<vector<l_a>> mtx);

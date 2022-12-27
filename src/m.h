@@ -13,6 +13,5 @@ class instruction{
         float w;
         float t;
 };
-
 vector<instruction> _m1(vector<road_act> d);
 vector<instruction> _m2(vector<road_act> d);

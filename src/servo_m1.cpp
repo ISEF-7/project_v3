@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 vector<instruction> _m1(vector<road_act> d){
     //TODO
     //grab l_mtx from d

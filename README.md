@@ -26,7 +26,7 @@
 - [Thread@^0.0.0-alpha+sha.dac3874d28](https://registry.platformio.org/libraries/ivanseidel/Thread)
 - [RPLidar](https://github.com/robopeak/rplidar_arduino) (Seemingly only available in GitHub and not in the PlatformIO Library Registry)
 - [Servo@^1.1.8](https://registry.platformio.org/libraries/arduino-libraries/Servo)
-- [SD@^1.2.4](https://registry.platformio.org/libraries/arduino-libraries/SD)
+- [SdFat@^2.2.0](https://registry.platformio.org/libraries/greiman/SdFat)
 - [LinkedLists@^0.0.0-alpha+sha.dac3874d28](https://registry.platformio.org/libraries/ivanseidel/LinkedList)
 
 ## ⚙️ Inner Workings
