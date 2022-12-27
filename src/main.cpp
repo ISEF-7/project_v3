@@ -11,13 +11,25 @@
 #define pin_m_2 0
 //#define blahblahblah (someint)
 
+
 using namespace std;
 
 ///////
 
+RPLidar l; RPLidar* L = &l; bool lstatus;
+Servo m1; Servo* M1 = &m1; bool m1status;
+Servo m2; Servo* M2 = &m2; bool m2status;
+
+void shutdown(Servo obj){if (nameof(obj) == "m1"){m1status = false;}if (nameof(obj) == "m2"){m2status = false;}}
+void shutdown(RPLidar obj){if (nameof(obj) == "l"){lstatus = false;}} 
+
 struct printData{  // to remove printing to increasing efficiency
 
   short completePercent;
+
+  string hok = "Hub: OK";
+  string her = "Hub: ERR";
+  string hb = "Booting Hub";
 
   string m1ok = "Servo m1: OK";
   string m1er = "Servo m1: ERR";
@@ -29,7 +41,7 @@ struct printData{  // to remove printing to increasing efficiency
 
   string lok = "RPLidar l: OK";
   string ler = "RPLidar l: ERR";
-  string lb = "Booting RPLidar...";
+  string lb = "Booting RPLidar";
 
   string SETUP = "SETUP ///////";
   string b = "booting";
@@ -38,24 +50,6 @@ struct printData{  // to remove printing to increasing efficiency
 
   string tick = "Tick #";
 };
-
-
-//////
-
-class Hub{
-  public:
-    const int Pin_l = pin_L; 
-    const int Pin_m_1 = pin_m_1;
-    const int Pin_m_2 = pin_m_2;
-};
-void hub_moduleCheck(Hub h){}
-
-void boot_hub(Hub h){
-  cout << "Booting hub...";
-  hub_moduleCheck(h);
-  
-  //TODO object configuration
-}
 
 //////
 
@@ -68,14 +62,12 @@ vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(B);
 //////
 
 printData pdt; 
-void print_tick(int i){cout << pdt.tick << i;}
 
 ThreadController tc = ThreadController();
 
 Thread* tmain = new Thread();
 void tmain_exec(){
 	Serial.println(millis());
-
 }
 
 Thread* tlidar = new Thread();
@@ -105,23 +97,34 @@ void m2_exec(){
 	Serial.println(millis());
 
 }
-
-//TODO init threading
-
-RPLidar l; RPLidar* L = &l; bool lstatus;
-Servo m1; Servo* M1 = &m1; bool m1status;
-Servo m2; Servo* M2 = &m2; bool m2status;
+class Hub{
+  public:
+    const int Pin_l = pin_L; 
+    const int Pin_m_1 = pin_m_1;
+    const int Pin_m_2 = pin_m_2;
+  void print_tick(int i){cout << pdt.tick << i;}
+};
 Hub hub; Hub* HUB = &hub; bool status;
+void shutdown(Hub obj){if (nameof(obj) == "hub"){status = false;}}
+void hub_moduleCheck(Hub h){
+  if (h.Pin_l == pin_L && typeid(h.Pin_l).name() == "i" && h.Pin_m_1 == pin_m_1 && typeid(h.Pin_m_1).name() == "i" && h.Pin_m_2 == pin_m_2 && typeid(h.Pin_m_2).name() == "i"){
+    cout<<pdt.hok;
+  }
+  else{
+    cout<<pdt.her;
+    shutdown(h);
+  }
+}
 
-///////
+void boot_hub(Hub h){
+  cout << pdt.hb << pdt.dotdotdot;
+  hub_moduleCheck(h);
+}
 
-void shutdown(Servo obj){if (&obj == &m1){m1status = false;}if (&obj == &m2){m2status = false;}}
-void shutdown(RPLidar obj){if (&obj == &l){lstatus = false;}} 
-void shutdown(Hub obj){if (&obj == &hub){status = false;}}
+
 
 void servo_moduleCheck(Servo servo){
-  //XXX test if comparing objects by runtime memory address works, alternative is to do nested classes, and the base class has the name
-  if (&servo == &m1){
+  if (nameof(servo) == "m1"){
     if (m1.attached() == true){
       cout << pdt.m1ok;
     }
@@ -130,7 +133,7 @@ void servo_moduleCheck(Servo servo){
       shutdown(servo);
     }
   }
-  if (&servo == &m2){
+  if (nameof(servo) == "m2"){
     if (m2.attached() == true){
       cout << pdt.m2ok;
     }
@@ -156,11 +159,18 @@ void lidar_moduleCheck(RPLidar lidar){
   }
 }
 void boot_lidar(RPLidar lidar){
-  cout << pdt.lb;
+  cout << pdt.lb << pdt.dotdotdot;
   lidar_moduleCheck(lidar);
-
-
 }
+
+
+//TODO init threading
+
+
+
+///////
+
+
 
 //////
 
@@ -186,8 +196,6 @@ void setup(){
   boot_hub(hub);
   boot_lidar(l);
   boot_servo({m1,m2});
-
-  
 }
 
 void loop() {

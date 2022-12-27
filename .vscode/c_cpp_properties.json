@@ -53,6 +53,7 @@
             "defines": [
                 "PLATFORMIO=60105",
                 "ARDUINO_AVR_UNO",
+                "PIO_FRAMEWORK_ARDUINO_ENABLE_RTTI",
                 "F_CPU=16000000L",
                 "ARDUINO_ARCH_AVR",
                 "ARDUINO=10808",
