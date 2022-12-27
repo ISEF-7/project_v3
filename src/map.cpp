@@ -7,6 +7,20 @@ using namespace std;
 
 vector<road_act> actonslist;
 
+class node{
+  public:
+    int node_position;
+    string name;
+};
+class road{
+  public:
+    vector<node> body;
+    float length;
+    vector<int> lanes;
+    float speedLimit; 
+};
+
+
 vector<vector<l_a>> convert_f_TO_rd(File sdFILE){
     //TODO convert algorithm
 }

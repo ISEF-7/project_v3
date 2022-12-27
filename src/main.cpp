@@ -7,8 +7,6 @@
 //TODO SET SERIAL TO COM6
 
 //define pins
-#define pin_m_1 0
-#define pin_m_2 0
 //#define blahblahblah (someint)
 
 
@@ -102,12 +100,18 @@ class Hub{
     const int Pin_l = pin_L; 
     const int Pin_m_1 = pin_m_1;
     const int Pin_m_2 = pin_m_2;
+
+    //const int width; TODO set
+    //const int length; TODO set
+    //const int height; TODO set
+
+    //const int wheel_diamter; TODO set
   void print_tick(int i){cout << pdt.tick << i;}
 };
 Hub hub; Hub* HUB = &hub; bool status;
 void shutdown(Hub obj){if (nameof(obj) == "hub"){status = false;}}
 void hub_moduleCheck(Hub h){
-  if (h.Pin_l == pin_L && typeid(h.Pin_l).name() == "i" && h.Pin_m_1 == pin_m_1 && typeid(h.Pin_m_1).name() == "i" && h.Pin_m_2 == pin_m_2 && typeid(h.Pin_m_2).name() == "i"){
+  if (h.Pin_l == pin_L && h.Pin_m_1 == pin_m_1 && h.Pin_m_2 == pin_m_2){
     cout<<pdt.hok;
   }
   else{

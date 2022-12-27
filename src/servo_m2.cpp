@@ -1,6 +1,8 @@
 #include "common.h"
 #include "m.h"
 
+#define pin_m_2 0
+
 using namespace std;
 
 vector<instruction> _m2(vector<road_act> d){
