@@ -7,7 +7,6 @@
 //TODO SET SERIAL TO COM6
 
 //define pins
-#define pin_L 0 //TODO set the values
 #define pin_m_1 0
 #define pin_m_2 0
 //#define blahblahblah (someint)
