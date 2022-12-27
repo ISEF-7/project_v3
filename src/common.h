@@ -10,5 +10,8 @@
 #include <Servo.h> //https://registry.platformio.org/libraries/arduino-libraries/Servo
 #include <SD.h> //https://registry.platformio.org/libraries/arduino-libraries/SD
 #include <LinkedList.h> //https://registry.platformio.org/libraries/ivanseidel/LinkedList/installation
+#include <typeinfo>
+
+#define nameof(x) #x
 
 using namespace std;
