@@ -2,8 +2,9 @@
 #include "map.h"
 #include "m.h"
 
-using namespace std;
+#define pin_m_1 0
 
+using namespace std;
 
 vector<instruction> _m1(vector<road_act> d){
     //TODO

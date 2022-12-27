@@ -3,24 +3,11 @@
 
 using namespace std;
 
-class location{
-  public:
-    string name;
-    int node_position;
-};
+class location;
 
-class node : location{
-  public:
+class node;
 
-};
-
-class road{
-  public:
-    vector<node> body;
-    float length;
-    vector<int> lanes;
-    float speedLimit; 
-};
+class road;
 
 struct l_a{ //NOTE clockwise angle's initial side is the segment itself
   float angle;
