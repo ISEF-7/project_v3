@@ -10,9 +10,8 @@
 - [RPLidar A1 (➖)](https://www.amazon.com/youyeetoo-Scanning-Obstacle-Avoidance-Navigation/dp/B0923RYT8V/ref=sr_1_1?crid=2HJT0FBYUZPEE&keywords=rplidar+a1+arduino&qid=1672168854&sprefix=rplidar+a1+arduino%2Caps%2C96&sr=8-1)
 - [2 Servo Motors (✔️)](https://www.amazon.com/Micro-Servos-Helicopter-Airplane-Controls/dp/B07MLR1498/ref=sr_1_2_sspa?crid=33Z8ENBSVKJXR&keywords=4%2Bpcs%2Bsg90%2B9g%2Bmicro%2Bservo&qid=1671903914&sprefix=4%2Bpcs%2Bsg90%2B9g%2Bmicro%2Bservoe%2Caps%2C101&sr=8-2-spons&smid=A2QTZX14X1D97I&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzNFRCSklWSElST044JmVuY3J5cHRlZElkPUEwMTEzNzE0MklLQUtRWjYwRUlSUCZlbmNyeXB0ZWRBZElkPUEwMzAzNTAzMUdNV0YxTTJFN0NFRCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU&th=1)
 - [mendable aluminum plate (❓)](https://www.lowes.com/pd/IMPERIAL-16-in-x-36-in-Galvanized-Steel-Joist-Lining/3134385)
-- [2 cuttable steel rods (❓)](https://www.amazon.com/uxcell-300mm-Stainless-Steel-Solid/dp/B082ZNGFZY/ref=sr_1_4?crid=5PWIWWJR1VJF&keywords=steel%2Brod&qid=1672168512&sprefix=stee%2Brod%2Caps%2C111&sr=8-4&th=1)
+- [2 cuttable stainless axle shaft and Black Plastic Wheels (❓)](https://www.amazon.com/gp/product/B07Z1H53Z4/ref=ewc_pr_img_1?smid=A27JQP2WM1GK86&th=1)
 - [10 wires (✔️)](https://www.amazon.com/gp/product/B089FZ79CS/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
-- [4 rubber wheels (❓)](https://www.amazon.com/Feetech-Analog-Degree-Continuous-Rotation/dp/B07FVQBNTD/ref=sr_1_2?crid=1N51M05ZPK6KL&keywords=servo+wheels&qid=1672166581&sprefix=servowheels%2Caps%2C126&sr=8-2)
 - [gears (✔️)](https://www.amazon.com/Quimat-Plastic-Single-Double-Reduction/dp/B06XCG24HZ/ref=sr_1_1?crid=1NLZO1UB8V3J7&keywords=12%2C28+gears&qid=1672165208&s=industrial&sprefix=12%2C28+gears%2Cindustrial%2C128&sr=1-1)
   - 20 gear
   - 28 gear
