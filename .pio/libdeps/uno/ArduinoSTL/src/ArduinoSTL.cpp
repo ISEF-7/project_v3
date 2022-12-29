@@ -17,7 +17,7 @@
 //
 
 #define ARDUINOSTL_DEFAULT_SERIAL Serial
-#define ARDUINOSTL_DEFAULT_CIN_COUT
+#define ARDUINOSTL_DEFAULT_CIN_COUT Serial
 
 using namespace std; 
 

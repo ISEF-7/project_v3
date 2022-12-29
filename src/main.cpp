@@ -18,7 +18,8 @@ using namespace std;
 
 ///////
 
-RPLidar l; RPLidar* L = &l; bool lstatus;
+
+RPLidar l; RPLidar* L = &l; bool lstatus; //FIXME there is a halting in all code before startup
 Servo m1; Servo* M1 = &m1; bool m1status;
 Servo m2; Servo* M2 = &m2; bool m2status;
 
@@ -171,7 +172,6 @@ void boot_lidar(RPLidar lidar){
   lidar_moduleCheck(lidar);
 }
 
-
 //TODO init threading
 
 
@@ -183,6 +183,8 @@ void boot_lidar(RPLidar lidar){
 //////
 
 void setup(){
+  Serial.begin(9600); //baud rate
+  /*
   cout << pdt.SETUP;
   cout << pdt.b;
 
@@ -199,20 +201,20 @@ void setup(){
   tc.add(t_m_1);
   tc.add(t_m_2);
 
-  Serial.begin(9600); //baud rate
 
   boot_lidar(l);
   boot_servo({m1,m2});
   boot_hub(hub);
 
   cin >> workingFile_path;
+  */
 }
 
 void loop() {
   /*
   int i = 0;
   print_tick(++i);
-  */
+
   if (tmain->shouldRun()){
     tmain->run();
   }
@@ -225,4 +227,8 @@ void loop() {
   if (t_m_2->shouldRun()){
     t_m_2->run();
   }
+  */
+  cout << "Test"; 
+  Serial.println("hehehehaw");
+  delay(1000);
 }
