@@ -18,7 +18,6 @@ using namespace std;
 
 ///////
 
-
 RPLidar l; RPLidar* L = &l; bool lstatus; //FIXME there is a halting in all code before startup
 Servo m1; Servo* M1 = &m1; bool m1status;
 Servo m2; Servo* M2 = &m2; bool m2status;
@@ -211,9 +210,9 @@ void setup(){
 }
 
 void loop() {
-  /*
+  /* 
   int i = 0;
-  print_tick(++i);
+  hub.print_tick(++i);
 
   if (tmain->shouldRun()){
     tmain->run();
