@@ -8,8 +8,8 @@
 
 //define pins
 #define pin_L 0 //TODO set the values
-#define pin_m_1 0
-#define pin_m_2 0
+#define pin_m_1 1
+#define pin_m_2 2
 
 //#define blahblahblah (someint)
 
@@ -25,11 +25,12 @@ Servo m2; Servo* M2 = &m2; bool m2status;
 void shutdown(Servo obj){if (nameof(obj) == "m1"){m1status = false;}if (nameof(obj) == "m2"){m2status = false;}}
 void shutdown(RPLidar obj){if (nameof(obj) == "l"){lstatus = false;}} 
 
-struct printData{  // to remove printing to increasing efficiency
+
 
   short completePercent;
 
   string hok = "Hub: OK";
+
   string her = "Hub: ERR";
   string hb = "Booting Hub";
 
@@ -51,54 +52,13 @@ struct printData{  // to remove printing to increasing efficiency
   string dotdotdot = "...";
 
   string tick = "Tick #";
-};
 
 //////
 
-string workingFile_path;
-vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(workingFile_path);
-vector<road_act> B = shortestpath_algo(la_mtx_data);
-vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(B);
-vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(B);
-
-//////
-
-printData pdt; 
-
-ThreadController tc = ThreadController();
-
-Thread* tmain = new Thread();
-void tmain_exec(){
-	Serial.println(millis());
-}
-
-Thread* tlidar = new Thread();
-void tlidar_exec(){
-	Serial.println(millis());
-
-}
-
-Thread* t_m_1 = new Thread();
-void m1_exec(){
-  vector<instruction> m1i = MOTOR_1_INSTRUCTIONS;
-  int i =0;
-  i++;
-  cout << i;
-  //TODO
-	Serial.println(millis());
+string file = "{ \"length\": [[,,], [,,], [,,]] \"angle\": [[,,], [,,], [,,]]}";
+  //TODO later add SD file reading
 
 
-}
-Thread* t_m_2 = new Thread();
-void m2_exec(){
-  vector<instruction> m2i = MOTOR_2_INSTRUCTIONS;
-  int i =0;
-  i++;
-  cout << i;
-  //TODO
-	Serial.println(millis());
-
-}
 class Hub{
   public:
     const int Pin_l = pin_L; 
@@ -110,22 +70,22 @@ class Hub{
     //const int height; TODO set
 
     //const int wheel_diamter; TODO set
-  void print_tick(int i){cout << pdt.tick << i;}
+  void print_tick(int i){cout << tick << i;}
 };
+
 Hub hub; Hub* HUB = &hub; bool status;
 void shutdown(Hub obj){if (nameof(obj) == "hub"){status = false;}}
 void hub_moduleCheck(Hub h){
   if (h.Pin_l == pin_L && h.Pin_m_1 == pin_m_1 && h.Pin_m_2 == pin_m_2){
-    cout<<pdt.hok;
+    cout<<hok;
   }
   else{
-    cout<<pdt.her;
+    cout<<her;
     shutdown(h);
   }
 }
-
 void boot_hub(Hub h){
-  cout << pdt.hb << pdt.dotdotdot;
+  cout << hb << dotdotdot;
   hub_moduleCheck(h);
 }
 
@@ -134,100 +94,136 @@ void boot_hub(Hub h){
 void servo_moduleCheck(Servo servo){ //TODO combine modulecheck and boot void functions to 2 singular functions
   if (nameof(servo) == "m1"){
     if (m1.attached() == true){
-      cout << pdt.m1ok;
+      cout << m1ok;
     }
     else{
-      cout << pdt.m1er;
+      cout << m1er;
       shutdown(servo);
     }
   }
   if (nameof(servo) == "m2"){
     if (m2.attached() == true){
-      cout << pdt.m2ok;
+      cout << m2ok;
     }
     else{
-       cout << pdt.m2er;
+       cout << m2er;
        shutdown(servo);
     }
   }
 }
 void boot_servo(vector<Servo> servolist){
   for (int i=0; (unsigned)i<servolist.size(); i++){
-    cout << pdt.sb << i << pdt.dotdotdot;
+    cout << sb << i << dotdotdot;
     servo_moduleCheck(servolist.at(i));
   };
 }
 
 void lidar_moduleCheck(RPLidar lidar){
   rplidar_response_device_info_t info;
-  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true && IS_OK(lidar.waitPoint()) == true){cout<< pdt.lok;} //XXX check lidar variables
+  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true && IS_OK(lidar.waitPoint()) == true){cout<< lok;} //XXX check lidar variables
   else{
-    cout << pdt.ler; 
+    cout << ler; 
     shutdown(lidar);
   }
 }
 void boot_lidar(RPLidar lidar){
-  cout << pdt.lb << pdt.dotdotdot;
+  cout << lb << dotdotdot;
   lidar_moduleCheck(lidar);
 }
 
 //TODO init threading
 
+// vector<vector<l_a>> la_mtx_data;
+// vector<road_act> B;
+// vector<instruction> MOTOR_1_INSTRUCTIONS;
+// vector<instruction> MOTOR_2_INSTRUCTIONS;
 
+// ///////
+// ThreadController tc = ThreadController();
+// Thread* tmain = new Thread();
+// void tmain_exec(){
+//   Serial.println(millis());
+// }
 
-///////
+// Thread* tlidar = new Thread();
+// void tlidar_exec(){
+//   Serial.println(millis());
+// }
 
+// Thread* t_m_1 = new Thread();
+// void m1_exec(){
+//   vector<instruction> m1i = MOTOR_1_INSTRUCTIONS;
+//   int i =0;
+//   i++;
+//   cout << i;
+//   //TODO
+//   Serial.println(millis());
+// }
+// Thread* t_m_2 = new Thread();
+// void m2_exec(){
+//   vector<instruction> m2i = MOTOR_2_INSTRUCTIONS;
+//   int i =0;
+//   i++;
+//   cout << i;
+//   //TODO
+//   Serial.println(millis());
+// }
 
 
 //////
 
 void setup(){
   Serial.begin(9600); //baud rate
-  /*
-  cout << pdt.SETUP;
-  cout << pdt.b;
+  cout << "e";
+  
+  // vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(file);
+  // vector<road_act> B = shortestpath_algo(la_mtx_data);
+  // vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(B);
+  // vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(B);
 
-  tmain->onRun(tmain_exec);
-  tlidar->onRun(tlidar_exec);
+  // cout << SETUP;
+  // cout << b;
 
-  t_m_1->onRun(m1_exec);
-  t_m_2->onRun(m2_exec);
+  // tmain->onRun(tmain_exec);
+  // tlidar->onRun(tlidar_exec);
 
-
-
-  tc.add(tmain);
-  tc.add(tlidar);
-  tc.add(t_m_1);
-  tc.add(t_m_2);
+  // t_m_1->onRun(m1_exec);
+  // t_m_2->onRun(m2_exec);
 
 
-  boot_lidar(l);
-  boot_servo({m1,m2});
-  boot_hub(hub);
+  // tc.add(tmain);
+  // tc.add(tlidar);
+  // tc.add(t_m_1);
+  // tc.add(t_m_2);
 
-  cin >> workingFile_path;
-  */
+
+  // boot_lidar(l);
+  // boot_servo({m1,m2});
+  // boot_hub(hub);
 }
 
 void loop() {
-  /* 
-  int i = 0;
-  hub.print_tick(++i);
 
-  if (tmain->shouldRun()){
-    tmain->run();
-  }
-  if (tlidar->shouldRun()){
-    tlidar->run();
-  }
-  if (t_m_1->shouldRun()){
-    t_m_1->run();
-  }
-  if (t_m_2->shouldRun()){
-    t_m_2->run();
-  }
-  */
+  // int i = 0;
+  // hub.print_tick(++i);
+  
+  // if (tmain->shouldRun()){
+  //   tmain->run();
+  // }
+  // if (tlidar->shouldRun()){
+  //   tlidar->run();
+  // }
+  // if (t_m_1->shouldRun()){
+  //   t_m_1->run();
+  // }
+  // if (t_m_2->shouldRun()){
+  //   t_m_2->run();
+  // }
+
   cout << "Test"; 
   Serial.println("hehehehaw");
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_BUILTIN, LOW);
   delay(1000);
 }

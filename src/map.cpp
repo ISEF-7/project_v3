@@ -2,13 +2,12 @@
 #include "map.h"
 #include "m.h"
 #include <limits.h>
-
 using namespace std;
 
-vector<road_act> actonslist;
-SdFat sd;
-File sdFILE_path;
+#include <iostream> 
 
+vector<road_act> actonslist;
+File MyReadFile;
 class node{
   public:
     int node_position;
@@ -21,78 +20,50 @@ class road{
     vector<int> lanes;
     float speedLimit; 
 };
-
-char line[40];
-char* skipSpace(char* str) {
-  while (isspace(*str)) str++;
-  return str;
-}
-bool parseLine(char* str) {
-  char* ptr;
-
-  // Set strtok start of line.
-  str = strtok(str, ",");
-  if (!str) return false;
-
-  // Print text field.
-  Serial.println(str);
-
-  // Subsequent calls to strtok expects a null pointer.
-  str = strtok(nullptr, ",");
-  if (!str) return false;
-
-  // Convert string to long integer.
-  int32_t i32 = strtol(str, &ptr, 0);
-  if (str == ptr || *skipSpace(ptr)) return false;
-  Serial.println(i32);
-
-  str = strtok(nullptr, ",");
-  if (!str) return false;
-
-  // strtoul accepts a leading minus with unexpected results.
-  if (*skipSpace(str) == '-') return false;
-
-  // Convert string to unsigned long integer.
-  uint32_t u32 = strtoul(str, &ptr, 0);
-  if (str == ptr || *skipSpace(ptr)) return false;
-  Serial.println(u32);
-
-  str = strtok(nullptr, ",");
-  if (!str) return false;
-
-  // Convert string to double.
-  double d = strtod(str, &ptr);
-  if (str == ptr || *skipSpace(ptr)) return false;
-  Serial.println(d);
-
-  // Check for extra fields.
-  return strtok(nullptr, ",") == nullptr;
+string readFile(string s){ //TODO later add SD file reading
+  return s;
 }
 
-vector<vector<l_a>> convert_f_TO_rd(string sdFILE_path){
-    /*
-    File file;
-    if (!file.open(sdFILE_path, FILE_WRITE)){ //FIXME no matching function for call to 'File32::open(std::string&, int)'
-    cout << "open failed";
+bool check (vector<vector<l_a>> vec, int _square){
+  for (int i = 0; i < _square; i++){
+    if (vec[i][i].length != 0 || vec[i][i].angle != 0){
+      return false;
     }
-    file.rewind();
-    while (file.available()) {
-    int n = file.fgets(line, sizeof(line));
-    if (n <= 0) {
-      cout << "fgets failed";
+  }
+  for (int i =0; i < _square; i++){
+    for (int j = 0; i < _square; j++){
+      if (vec[i][j].length != vec[j][i].length || vec[i][j].angle != vec[j][i].angle){
+        return false;
+      }
     }
-    if (line[n-1] != '\n' && n == (sizeof(line) - 1)) {
-        cout << "line too long";
-    }
-    if (!parseLine(line)) {
-      cout << "parseLine failed";
-    }
-    Serial.println();
-    }
-    */
+  }
+  return true;
 }
 
-vector<vector<float>> grab_length(vector<vector<l_a>> mtx, string grab){
+vector<vector<l_a>> convert_f_TO_rd(string file){ 
+  StaticJsonDocument<200> doc; //size https://arduinojson.org/v6/assistant/#/step1
+  DeserializationError error = deserializeJson(doc, file);
+  if (error) {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+  int square = sizeof(doc["length"])/(sizeof(doc["length"][0]));
+  vector<vector<l_a>> rd;
+  for (int i = 0; i < square; i++){
+    vector<l_a> v;
+    v.clear();
+    for (int j = 0; j < square; i++){
+      l_a iter {doc["length"][i][j],doc["angle"][i][j]};
+      v.push_back(iter);
+    }
+    rd.push_back(v);
+  }
+  if (check(rd, square) == true){return rd;}
+  else{return;}
+}
+
+vector<vector<float>> grab(vector<vector<l_a>> mtx, string grab){
     int size = mtx.size();
     vector<vector<float>> new_mtx;
     for(unsigned i=0; i<(unsigned)size; i++ ){
@@ -107,14 +78,6 @@ vector<vector<float>> grab_length(vector<vector<l_a>> mtx, string grab){
     }
     return new_mtx;
 }
-
-/*
-convt_vect_array(vector<vector<float>> vect){ //TODO MAKE FUCNTION FOR CONVERTING 2D VECTOR INTO 2D ARRAY 
-
-}
-*/
-
-
 vector<road_act> shortestpath_algo(vector<vector<l_a>> mtx){
     //TODO shortestpath algorithm
     //grab l_mtx
