@@ -120,7 +120,7 @@ void boot_servo(vector<Servo> servolist){
 
 void lidar_moduleCheck(RPLidar lidar){
   rplidar_response_device_info_t info;
-  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true && IS_OK(lidar.waitPoint()) == true){cout<< lok;} //XXX check lidar variables
+  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true){cout<< lok;} //XXX check lidar variables
   else{
     cout << ler; 
     shutdown(lidar);
