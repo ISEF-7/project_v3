@@ -3,18 +3,16 @@
 #include "map.h"
 #include "l.h"
 #include "slam.h"
-//NOTE COM3 = /dev/tty.usbmodem1101, 
-//TODO SET SERIAL TO COM6
 
 //define pins
 #define pin_L 0 //TODO set the values
 #define pin_m_1 1
 #define pin_m_2 2
 
-//#define blahblahblah (someint)
-
 
 using namespace std;
+
+enum PROTOCOL {ON_PROTOCOL, OFF_PROTOCOL, BOOTING_PROTOCOL, WAIT_PROTOCOL, ROUTE_PROTOCOL, SLAM_PROTOCOL} SYS_STATUS;
 
 ///////
 
@@ -22,34 +20,48 @@ RPLidar l; RPLidar* L = &l; bool lstatus; //FIXME there is a halting in all code
 Servo m1; Servo* M1 = &m1; bool m1status;
 Servo m2; Servo* M2 = &m2; bool m2status;
 
-void shutdown(Servo obj){if (nameof(obj) == "m1"){m1status = false;}if (nameof(obj) == "m2"){m2status = false;}}
-void shutdown(RPLidar obj){if (nameof(obj) == "l"){lstatus = false;}} 
+void shutdown(Servo obj){
+  if (strcmp(nameof(obj), "m1") == 0){ //TEST if nameof() macro prints "obj" not the actual name of passed argument
+    m1status = false;
+    SYS_STATUS = OFF_PROTOCOL;
+  }
+  if (strcmp(nameof(obj), "m2") == 0){
+    m2status = false; 
+    SYS_STATUS = OFF_PROTOCOL;
+  }
+}
+void shutdown(RPLidar obj){
+  if (strcmp(nameof(obj),"l") == 0){ 
+    lstatus = false; 
+    SYS_STATUS = OFF_PROTOCOL;
+    }
+} 
 
-  short completePercent;
+short completePercent;
 
-  string hok = "Hub: OK";
+string hok = "Hub: OK";
 
-  string her = "Hub: ERR";
-  string hb = "Booting Hub";
+string her = "Hub: ERR";
+string hb = "Booting Hub";
 
-  string m1ok = "Servo m1: OK";
-  string m1er = "Servo m1: ERR";
+string m1ok = "Servo m1: OK";
+string m1er = "Servo m1: ERR";
 
-  string m2ok = "Servo m2:" "OK";
-  string m2er = "Servo m2:" "ERR";
+string m2ok = "Servo m2:" "OK";
+string m2er = "Servo m2:" "ERR";
 
-  string sb = "Booting Servo m";
+string sb = "Booting Servo m";
 
-  string lok = "RPLidar l: OK";
-  string ler = "RPLidar l: ERR";
-  string lb = "Booting RPLidar";
+string lok = "RPLidar l: OK";
+string ler = "RPLidar l: ERR";
+string lb = "Booting RPLidar";
 
-  string SETUP = "SETUP ///////";
-  string b = "booting";
+string SETUP = "SETUP ///////";
+string b = "booting";
 
-  string dotdotdot = "...";
+string dotdotdot = "...";
 
-  string tick = "Tick #";
+string tick = "Tick #";
 
 //////
 
@@ -73,8 +85,12 @@ class Hub{
 
 Hub hub; Hub* HUB = &hub; bool hubstatus;
 
-enum PROTOCOL {ON_PROTOCOL, OFF_PROTOCOL, BOOTING_PROTOCOL, WAIT_PROTOCOL, ROUTE_PROTOCOL, SLAM_PROTOCOL} SYS_STATUS;
-void shutdown(Hub obj){if (nameof(obj) == "hub"){hubstatus = false;}}
+void shutdown(Hub obj){
+  if (strcmp(nameof(obj), "hub") == 0){
+    hubstatus = false;
+    SYS_STATUS = OFF_PROTOCOL;
+  }
+}
 void hub_moduleCheck(Hub h){
   if (h.Pin_l == pin_L && h.Pin_m_1 == pin_m_1 && h.Pin_m_2 == pin_m_2){
     cout<<hok;
@@ -89,10 +105,8 @@ void boot_hub(Hub h){
   hub_moduleCheck(h);
 }
 
-
-
 void servo_moduleCheck(Servo servo){ //TODO combine modulecheck and boot void functions to 2 singular functions
-  if (nameof(servo) == "m1"){
+  if (strcmp(nameof(servo), "m1") == 0){
     if (m1.attached() == true){
       cout << m1ok;
     }
@@ -101,7 +115,7 @@ void servo_moduleCheck(Servo servo){ //TODO combine modulecheck and boot void fu
       shutdown(servo);
     }
   }
-  if (nameof(servo) == "m2"){
+  if (strcmp(nameof(servo), "m2") == 0){
     if (m2.attached() == true){
       cout << m2ok;
     }
