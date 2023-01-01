@@ -3,7 +3,7 @@
 #include "map.h"
 #include "l.h"
 #include "slam.h"
-
+//NOTE COM3 = /dev/tty.usbmodem1101, 
 //TODO SET SERIAL TO COM6
 
 //define pins
@@ -24,8 +24,6 @@ Servo m2; Servo* M2 = &m2; bool m2status;
 
 void shutdown(Servo obj){if (nameof(obj) == "m1"){m1status = false;}if (nameof(obj) == "m2"){m2status = false;}}
 void shutdown(RPLidar obj){if (nameof(obj) == "l"){lstatus = false;}} 
-
-
 
   short completePercent;
 
@@ -73,8 +71,10 @@ class Hub{
   void print_tick(int i){cout << tick << i;}
 };
 
-Hub hub; Hub* HUB = &hub; bool status;
-void shutdown(Hub obj){if (nameof(obj) == "hub"){status = false;}}
+Hub hub; Hub* HUB = &hub; bool hubstatus;
+
+enum PROTOCOL {ON_PROTOCOL, OFF_PROTOCOL, BOOTING_PROTOCOL, WAIT_PROTOCOL, ROUTE_PROTOCOL, SLAM_PROTOCOL} SYS_STATUS;
+void shutdown(Hub obj){if (nameof(obj) == "hub"){hubstatus = false;}}
 void hub_moduleCheck(Hub h){
   if (h.Pin_l == pin_L && h.Pin_m_1 == pin_m_1 && h.Pin_m_2 == pin_m_2){
     cout<<hok;
@@ -133,56 +133,63 @@ void boot_lidar(RPLidar lidar){
 
 //TODO init threading
 
-// vector<vector<l_a>> la_mtx_data;
-// vector<road_act> B;
-// vector<instruction> MOTOR_1_INSTRUCTIONS;
-// vector<instruction> MOTOR_2_INSTRUCTIONS;
+vector<vector<l_a>> la_mtx_data;
+vector<road_act> B;
+vector<instruction> MOTOR_1_INSTRUCTIONS;
+vector<instruction> MOTOR_2_INSTRUCTIONS;
 
-// ///////
-// ThreadController tc = ThreadController();
-// Thread* tmain = new Thread();
-// void tmain_exec(){
-//   Serial.println(millis());
-// }
+/////////
+ThreadController tc = ThreadController();
+Thread* tmain = new Thread();
+void tmain_exec(){
+  Serial.println(millis());
+}
 
-// Thread* tlidar = new Thread();
-// void tlidar_exec(){
-//   Serial.println(millis());
-// }
+Thread* tlidar = new Thread();
+void tlidar_exec(){
+  Serial.println(millis());
+}
 
-// Thread* t_m_1 = new Thread();
-// void m1_exec(){
-//   vector<instruction> m1i = MOTOR_1_INSTRUCTIONS;
-//   int i =0;
-//   i++;
-//   cout << i;
-//   //TODO
-//   Serial.println(millis());
-// }
-// Thread* t_m_2 = new Thread();
-// void m2_exec(){
-//   vector<instruction> m2i = MOTOR_2_INSTRUCTIONS;
-//   int i =0;
-//   i++;
-//   cout << i;
-//   //TODO
-//   Serial.println(millis());
-// }
+Thread* t_m_1 = new Thread();
+void m1_exec(){
+  vector<instruction> m1i = MOTOR_1_INSTRUCTIONS;
+  int i =0;
+  i++;
+  cout << i;
+  //TODO
+  Serial.println(millis());
+}
+Thread* t_m_2 = new Thread();
+void m2_exec(){
+  vector<instruction> m2i = MOTOR_2_INSTRUCTIONS;
+  int i =0;
+  i++;
+  cout << i;
+  //TODO
+  Serial.println(millis());
+}
 
+void LEDblink(int port, int delayms){
+  digitalWrite(port, HIGH);
+  delay(delayms);
+}
 
 //////
 
 void setup(){
   Serial.begin(9600); //baud rate
-  cout << "e";
-  
+
+  cout << SETUP;
+  cout << b;
+
+  pinMode(LED_BUILTIN, OUTPUT);
+  for (int i = 1; i <= 5; i++){
+    LEDblink(LED_BUILTIN, 500);
+  }
   // vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(file);
   // vector<road_act> B = shortestpath_algo(la_mtx_data);
   // vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(B);
   // vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(B);
-
-  // cout << SETUP;
-  // cout << b;
 
   // tmain->onRun(tmain_exec);
   // tlidar->onRun(tlidar_exec);
@@ -219,11 +226,4 @@ void loop() {
   // if (t_m_2->shouldRun()){
   //   t_m_2->run();
   // }
-
-  cout << "Test"; 
-  Serial.println("hehehehaw");
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(1000);
 }
