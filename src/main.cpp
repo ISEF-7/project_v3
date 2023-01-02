@@ -12,9 +12,9 @@
 
 using namespace std;
 
-enum PROTOCOL {ON_PROTOCOL, OFF_PROTOCOL, BOOTING_PROTOCOL, WAIT_PROTOCOL, ROUTE_PROTOCOL, SLAM_PROTOCOL} SYS_STATUS;
+enum PROTOCOL {OFF_PROTOCOL = 0, ON_PROTOCOL = 1, BOOTING_PROTOCOL = 2, ROUTE_PROTOCOL = 3, SLAM_PROTOCOL = 4} SYS_STATUS;
 
-///////
+const bool TEST_PROTOCOL = true;
 
 RPLidar l; RPLidar* L = &l; bool lstatus; //FIXME there is a halting in all code before startup
 Servo m1; Servo* M1 = &m1; bool m1status;
@@ -191,8 +191,8 @@ void LEDblink(int port, int delayms){
 }
 
 //////
-
 void setup(){
+  delay(300);
   SYS_STATUS = ON_PROTOCOL;
   while (SYS_STATUS == ON_PROTOCOL){
     Serial.begin(9600); //baud rate
@@ -208,9 +208,10 @@ void setup(){
     }
     cout << b << dotdotdot;
 
+
+    boot_hub(hub);
     boot_lidar(l);
     //boot_servo({m1,m2}); //FIXME no printing with this line of code
-    // boot_hub(hub);
 
 
     // vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
@@ -232,7 +233,7 @@ void setup(){
   }
 }
 void loop() {
-
+  // while (SYS_STATUS != OFF_PROTOCOL){
   // int i = 0;
   // hub.print_tick(++i);
   
@@ -247,5 +248,6 @@ void loop() {
   // }
   // if (t_m_2->shouldRun()){
   //   t_m_2->run();
+  // }
   // }
 }
