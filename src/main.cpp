@@ -13,31 +13,29 @@
 using namespace std;
 
 enum PROTOCOL {OFF_PROTOCOL = 0, ON_PROTOCOL = 1, BOOTING_PROTOCOL = 2, ROUTE_PROTOCOL = 3, SLAM_PROTOCOL = 4} SYS_STATUS;
+enum STATUS {OK, ERR};
 
 const bool TEST_PROTOCOL = true;
 
-RPLidar l; RPLidar* L = &l; bool lstatus; //FIXME there is a halting in all code before startup
-Servo m1; Servo* M1 = &m1; bool m1status;
-Servo m2; Servo* M2 = &m2; bool m2status;
+RPLidar l; RPLidar* L = &l; STATUS lstatus; //TODO restructure code by adding custom classes inherited from these builtin header classes 
+Servo m1; Servo* M1 = &m1; STATUS m1status; 
+Servo m2; Servo* M2 = &m2; STATUS m2status;
 
 void shutdown(Servo obj){
-  if (strcmp(nameof(obj), "m1") == 0){ //TEST if nameof() macro prints "obj" not the actual name of passed argument
-    m1status = false;
-    SYS_STATUS = OFF_PROTOCOL;
+  if (strcmp(nameof(obj), "m1") == 0){ //TEST if nameof() macro prints "obj" not the actual name of passed argument 
+  //TODO add shutting down of specific modules
   }
   if (strcmp(nameof(obj), "m2") == 0){
-    m2status = false; 
-    SYS_STATUS = OFF_PROTOCOL;
   }
 }
 void shutdown(RPLidar obj){
   if (strcmp(nameof(obj),"l") == 0){ 
-    lstatus = false; 
-    SYS_STATUS = OFF_PROTOCOL;
-    }
-} 
+  }
+}
 
-short completePercent;
+//////
+
+short completePercent = 0;
 
 string hok = "Hub: OK\n";
 
@@ -58,8 +56,15 @@ string lb = "Booting RPLidar";
 
 string SETUP = "SETUP ///////\n";
 string b = "booting";
+string boot_results;
 
+string SETUP_FINISH  = "SETUP Completed ///////\n";
+string b_FINISH = "booting Completed";
+
+string X = "X";
+string hash = "#";
 string dotdotdot = "...\n";
+string exclamation_mark = "!\n";
 
 string tick = "Tick #";
 
@@ -77,66 +82,72 @@ class Hub{
 
     //const int width; TODO set
     //const int length; TODO set
-    //const int height; TODO set
+    //const int mass; TODO set
 
     //const int wheel_diamter; TODO set
   void print_tick(int i){cout << tick << i;}
 };
 
-Hub hub; Hub* HUB = &hub; bool hubstatus;
+Hub hub; Hub* HUB = &hub; STATUS hubstatus;
 
 void shutdown(Hub obj){
   if (strcmp(nameof(obj), "hub") == 0){
-    hubstatus = false;
     SYS_STATUS = OFF_PROTOCOL;
   }
 }
 void hub_moduleCheck(Hub h){
   if (h.Pin_l == pin_L && h.Pin_m_1 == pin_m_1 && h.Pin_m_2 == pin_m_2){
-    cout<<hok;
+    hubstatus = OK;
   }
   else{
-    cout<<her;
+    hubstatus = ERR;
     shutdown(h);
   }
 }
 void boot_hub(Hub h){
   cout << hb << dotdotdot;
   hub_moduleCheck(h);
+  if (hubstatus == OK && m1status == OK && m2status == OK && lstatus == OK){
+    SYS_STATUS = ON_PROTOCOL;
+  }
+  else{
+    SYS_STATUS = OFF_PROTOCOL;
+  }
 }
 
 void servo_moduleCheck(Servo servo){ //TODO combine modulecheck and boot void functions to 2 singular functions
   if (strcmp(nameof(servo), "m1") == 0){
     if (m1.attached() == true){
-      cout << m1ok;
+      m1status = ERR;
     }
     else{
-      cout << m1er;
+      m1status = ERR;
       shutdown(servo);
     }
   }
   if (strcmp(nameof(servo), "m2") == 0){
     if (m2.attached() == true){
-      cout << m2ok;
+      m2status = OK;
     }
     else{
-       cout << m2er;
-       shutdown(servo);
+      m2status = ERR;
+      shutdown(servo);
     }
   }
 }
 void boot_servo(vector<Servo> servolist){
   for (unsigned int i = 0; i < servolist.size(); i++){
-    cout << sb << i << dotdotdot;
     servo_moduleCheck(servolist.at(i));
   };
 }
 
 void lidar_moduleCheck(RPLidar lidar){
   rplidar_response_device_info_t info;
-  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true){cout<< lok;} //XXX check lidar variables
+  if (IS_OK(lidar.getDeviceInfo(info, 100)) == true){
+    lstatus = OK; 
+  } //XXX check lidar variables
   else{
-    cout << ler; 
+    lstatus = ERR;
     shutdown(lidar);
   }
 }
@@ -194,7 +205,7 @@ void LEDblink(int port, int delayms){
 void setup(){
   delay(300);
   SYS_STATUS = ON_PROTOCOL;
-  while (SYS_STATUS == ON_PROTOCOL){
+  //while (SYS_STATUS == ON_PROTOCOL){
     Serial.begin(9600); //baud rate
 
     cout << "\n";
@@ -209,10 +220,9 @@ void setup(){
     cout << b << dotdotdot;
 
 
-    boot_hub(hub);
     boot_lidar(l);
     //boot_servo({m1,m2}); //FIXME no printing with this line of code
-
+    boot_hub(hub);
 
     // vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
     // vector<road_act> B = shortestpath_algo(la_mtx_data);  //FIXME no printing with this line of code
@@ -230,7 +240,7 @@ void setup(){
     // tc.add(tlidar);
     // tc.add(t_m_1);
     // tc.add(t_m_2);
-  }
+  //}
 }
 void loop() {
   // while (SYS_STATUS != OFF_PROTOCOL){
