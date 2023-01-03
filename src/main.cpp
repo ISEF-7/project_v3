@@ -105,7 +105,7 @@ void hub_moduleCheck(Hub h){
   }
 }
 void boot_hub(Hub h){
-  cout << hb << dotdotdot;
+  //cout << hb << dotdotdot;
   hub_moduleCheck(h);
   if (hubstatus == OK && m1status == OK && m2status == OK && lstatus == OK){
     SYS_STATUS = ON_PROTOCOL;
@@ -152,7 +152,7 @@ void lidar_moduleCheck(RPLidar lidar){
   }
 }
 void boot_lidar(RPLidar lidar){
-  cout << lb << dotdotdot;
+  //cout << lb << dotdotdot;
   lidar_moduleCheck(lidar);
 }
 
@@ -180,7 +180,7 @@ void m1_exec(){
   vector<instruction> m1i = MOTOR_1_INSTRUCTIONS;
   int i =0;
   i++;
-  cout << i;
+  //cout << i;
   //TODO
   Serial.println(millis());
 }
@@ -189,7 +189,7 @@ void m2_exec(){
   vector<instruction> m2i = MOTOR_2_INSTRUCTIONS;
   int i =0;
   i++;
-  cout << i;
+ // cout << i;
   //TODO
   Serial.println(millis());
 }
