@@ -205,7 +205,7 @@ void LEDblink(int port, int delayms){
 void setup(){
   delay(300);
   SYS_STATUS = ON_PROTOCOL;
-  //while (SYS_STATUS == ON_PROTOCOL){
+  while (SYS_STATUS == ON_PROTOCOL){
     Serial.begin(9600); //baud rate
 
     cout << "\n";
@@ -240,7 +240,7 @@ void setup(){
     // tc.add(tlidar);
     // tc.add(t_m_1);
     // tc.add(t_m_2);
-  //}
+  }
 }
 void loop() {
   // while (SYS_STATUS != OFF_PROTOCOL){
