@@ -219,7 +219,6 @@ void setup(){
     }
     cout << b << dotdotdot;
 
-
     boot_lidar(l);
     //boot_servo({m1,m2}); //FIXME no printing with this line of code
     boot_hub(hub);
