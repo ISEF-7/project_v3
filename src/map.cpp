@@ -52,7 +52,7 @@ vector<vector<l_a>> convert_f_TO_rd(string file){
   vector<vector<l_a>> rd;
   for (int i = 0; i < square; i++){
     vector<l_a> v;
-    v.clear();
+    v.clear(); //TODO make separate code for (square choose 2) * (square choose 2) matrix for angles
     for (int j = 0; j < square; i++){
       l_a iter {doc["length"][i][j],doc["angle"][i][j]};
       v.push_back(iter);
