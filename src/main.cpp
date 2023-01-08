@@ -230,9 +230,9 @@ void setup(){
     //boot_servo({m1,m2}); //FIXME no printing with this line of code
     boot_hub(hub);
 
-    // vector<vector<float>> l_mtx_data = convert_f_TO_rd(file, l);  //FIXME no printing with this line of code
-    // vector<vector<float>> a_mtx_data = convert_f_TO_rd(file, a);  //FIXME no printing with this line of code
-    // vector<vector<float>> s_mtx_data = convert_f_TO_rd(file, s);  //FIXME no printing with this line of code
+    // vector<vector<float>> l_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
+    // vector<vector<float>> a_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
+    // vector<vector<float>> s_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
     // vector<road_act> f = shortestpath_algo(l_mtx_data, a_mtx_data, s_mtx_data);  //FIXME no printing with this line of code
     // vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(f);  //FIXME no printing with this line of code
     // vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(f);  //FIXME no printing with this line of code

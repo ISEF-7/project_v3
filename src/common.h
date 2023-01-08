@@ -17,8 +17,8 @@
 #define NULL 0x00000000
 #endif
 
-#ifndef sizeof
-#define sizeof(type) ((char *)(&type+1)-(char*)(&type))
-#endif
+// #ifndef sizeof
+// #define sizeof(type) ((char *)(&type+1)-(char*)(&type))
+// #endif
 
 using namespace std;
