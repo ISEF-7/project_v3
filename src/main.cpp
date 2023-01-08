@@ -127,7 +127,7 @@ void servo_moduleCheck(Servo servo){ //TODO combine modulecheck and boot void fu
 }
 void boot_servo(vector<Servo> servolist){
   for (unsigned int i = 0; i < servolist.size(); i++){
-    cout << sb << i << dotdotdot;
+    cout << sb << dotdotdot;
     servo_moduleCheck(servolist.at(i));
   };
 }
@@ -208,10 +208,9 @@ void setup(){
     }
     cout << b << dotdotdot;
 
-
     boot_hub(hub);
     boot_lidar(l);
-    //boot_servo({m1,m2}); //FIXME no printing with this line of code
+    boot_servo({m1,m2}); 
 
 
     // vector<vector<l_a>> la_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
