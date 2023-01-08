@@ -137,6 +137,12 @@ void servo_moduleCheck(Servo servo){ //TODO combine modulecheck and boot void fu
 }
 void boot_servo(vector<Servo> servolist){
   for (unsigned int i = 0; i < servolist.size(); i++){
+    if (i == 0){
+      servolist.at(i).attach(pin_m_1);
+    }
+    else if (i == 1){
+      servolist.at(i).attach(pin_m_2);
+    }
     servo_moduleCheck(servolist.at(i));
   };
 }
