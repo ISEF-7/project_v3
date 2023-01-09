@@ -27,7 +27,7 @@ string readFile(File s){ //TODO later add SD file reading
   //return s;
 }
 
-bool check (vector<vector<float>> vec, int _square){
+bool check (vector<vector<float>> vec, int _square){  
   for (int i = 0; i < _square; i++){
     if (vec[i][i] != 0 || vec[i][i] != 0){
       return false;
@@ -49,7 +49,7 @@ bool check (vector<float> vec, int _square){
 float toFloat(string s){ //TODO make algo
 
 }
-vector<vector<float>> convert_f_TO_rd(string str){ 
+vector<vector<float>> convert_f_TO_rd(string str){  //CHECKED 
   vector<vector<float>> rd;
   int size=0;
   bool size_def = false;
