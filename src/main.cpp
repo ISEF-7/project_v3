@@ -70,7 +70,7 @@ string tick = "Tick #";
 
 //////
 
-string file = "{ \"length\": [[,,], [,,], [,,]] \"angle\": [[,,], [,,], [,,]]}";
+string file = "0 0 0 0% 0 0 0 0% 0 0 0 0% 0 0 0 0%";
   //TODO later add SD file reading
 
 
@@ -229,7 +229,7 @@ void setup(){
     boot_lidar(l);
     //boot_servo({m1,m2}); //FIXME no printing with this line of code
     boot_hub(hub);
-
+    // TODO divide string file into multiple strings
     // vector<vector<float>> l_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
     // vector<vector<float>> a_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
     // vector<vector<float>> s_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
