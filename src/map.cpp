@@ -1,123 +1,130 @@
 #include "common.h"
 #include "map.h"
 #include "m.h"
-#include <limits.h>
+#include <limits>
+#include <string>
 
 using namespace std;
 
 vector<road_act> actonslist;
-SdFat sd;
-File sdFILE_path;
-
+File MyReadFile;
 class node{
   public:
     int node_position;
     string name;
+    float angle;
+    //trafficlightstate trafficlightstate; TODO
+    //pedestrianstate pedestrianstate; TODO
 };
 class road{
   public:
     vector<node> body;
     float length;
-    vector<int> lanes;
+    //vector<int> lanes;
     float speedLimit; 
 };
-
-char line[40];
-char* skipSpace(char* str) {
-  while (isspace(*str)) str++;
-  return str;
+string readFile(File s){ //TODO later add SD file reading
+  //return s;
 }
-bool parseLine(char* str) {
-  char* ptr;
-
-  // Set strtok start of line.
-  str = strtok(str, ",");
-  if (!str) return false;
-
-  // Print text field.
-  Serial.println(str);
-
-  // Subsequent calls to strtok expects a null pointer.
-  str = strtok(nullptr, ",");
-  if (!str) return false;
-
-  // Convert string to long integer.
-  int32_t i32 = strtol(str, &ptr, 0);
-  if (str == ptr || *skipSpace(ptr)) return false;
-  Serial.println(i32);
-
-  str = strtok(nullptr, ",");
-  if (!str) return false;
-
-  // strtoul accepts a leading minus with unexpected results.
-  if (*skipSpace(str) == '-') return false;
-
-  // Convert string to unsigned long integer.
-  uint32_t u32 = strtoul(str, &ptr, 0);
-  if (str == ptr || *skipSpace(ptr)) return false;
-  Serial.println(u32);
-
-  str = strtok(nullptr, ",");
-  if (!str) return false;
-
-  // Convert string to double.
-  double d = strtod(str, &ptr);
-  if (str == ptr || *skipSpace(ptr)) return false;
-  Serial.println(d);
-
-  // Check for extra fields.
-  return strtok(nullptr, ",") == nullptr;
+bool check (vector<vector<float>> vec, int _square){ //CHECKED
+  for (int i = 0; i < _square; i++){
+    if (vec[i][i] != 0 || vec[i][i] != 0){
+      return false;
+    }
+  }
+  for (int i =0; i < _square; i++){
+    for (int j = 0; j < _square; j++){
+      if (vec[i][j] != vec[j][i] || vec[i][j] != vec[j][i]){
+        return false;
+      }
+    }
+  }
+  return true;
 }
-
-vector<vector<l_a>> convert_f_TO_rd(string sdFILE_path){
-    /*
-    File file;
-    if (!file.open(sdFILE_path, FILE_WRITE)){ //FIXME no matching function for call to 'File32::open(std::string&, int)'
-    cout << "open failed";
-    }
-    file.rewind();
-    while (file.available()) {
-    int n = file.fgets(line, sizeof(line));
-    if (n <= 0) {
-      cout << "fgets failed";
-    }
-    if (line[n-1] != '\n' && n == (sizeof(line) - 1)) {
-        cout << "line too long";
-    }
-    if (!parseLine(line)) {
-      cout << "parseLine failed";
-    }
-    Serial.println();
-    }
-    */
+int ascii(int c){ //CHECKED
+    return c-48;
 }
-
-vector<vector<float>> grab_length(vector<vector<l_a>> mtx, string grab){
-    int size = mtx.size();
-    vector<vector<float>> new_mtx;
-    for(unsigned i=0; i<(unsigned)size; i++ ){
-        for (unsigned j=0; j<size; j++){
-            if (grab == "length"){
-            new_mtx[i][j] = mtx[i][j].length;
-            }
-            if (grab == "angle"){
-            new_mtx[i][j] = mtx[i][j].angle;
-            }
+float toFloat(string s, int base){ //CHECKED
+    int l = s.length();
+    bool is_dec = false;
+    int dec_ind=0;
+    for (int v=0; v<l;v++){
+        if(s.at(v) == '.'){
+            dec_ind = v;
+            is_dec = true;
         }
     }
-    return new_mtx;
+    if (is_dec == true){
+        int left = 0;
+        float right = 0;
+        for(int i=0; i<dec_ind; i++){
+            int a = pow(base,dec_ind-i-1)*ascii(s.at(i));
+            left = left + a;
+        }
+        for(int j=dec_ind+1; j<l;j++){
+            float b = pow(pow(base,j-dec_ind),-1)*ascii(s.at(j));
+            right = right + b;
+        }
+        float sum = left + right;
+        return sum;
+    }
+    else{
+        int mid = 0;
+        for(int k=0; k<l; k++){
+            int m = pow(base,l-k-1)*ascii(s.at(k));
+            mid = mid + m;
+        }
+        return mid;
+    }
+}
+vector<vector<float>> convert_f_TO_rd(string str){  //CHECKED 
+  vector<vector<float>> rd;
+  int size=0;
+  bool size_def = false;
+  vector<float> push;
+  float minipush;
+  string stringdigits;
+  for (int i = 0;i<str.length();i++){
+    if (str[i] != ' ' && str[i] != '%'){
+      stringdigits.push_back(str[i]);
+    }
+    if (str[i] == ' '){
+      minipush = toFloat(stringdigits,10); //get to float algorithm
+      stringdigits = "";
+      push.push_back(minipush);
+      minipush = 0;
+    }
+    if (str[i] == '%'){
+      size = i + 1;
+      size_def = true;
+      rd.push_back(push);
+      push.clear();
+    }
+  }
+  if (check(rd, size) == true){return rd;}
+  else{cout << "conv[f,r/a] err"; return;}
 }
 
-/*
-convt_vect_array(vector<vector<float>> vect){ //TODO MAKE FUCNTION FOR CONVERTING 2D VECTOR INTO 2D ARRAY 
-
+vector<float> convert_f_TO_s(string str){ //CHECKED
+  vector<float> s;
+  float minipush;
+  string stringdigits;
+  for (int i=0;i<str.length();i++){
+    if (str.at(i) != ' ' && str.at(i) != '%'){
+        stringdigits = stringdigits + str.at(i);
+    }
+    else if (str.at(i) == ' ' || str.at(i) == '%'){
+        minipush = toFloat(stringdigits,10);
+        s.push_back(minipush);
+        stringdigits = "";
+    }
+  }
+  return s;
+  //else{cout << "conv[f,s] err"; return ;}
 }
-*/
-
-
-vector<road_act> shortestpath_algo(vector<vector<l_a>> mtx){
+vector<road_act> shortestpath_algo(vector<vector<float>> l_mtx, vector<vector<float>> a_mtx, vector<float> s_mtx){
     //TODO shortestpath algorithm
     //grab l_mtx
     //dijstrka func d d(l_mtx)
-    //return [ merge d(l_mtx) and (a_mtx) into road_act vector (l,a) structure 
+    //return [ merge d(l_mtx), (a_mtx), and (s_mtx) into road_act vector (l,a,s) structure ]1111
 }

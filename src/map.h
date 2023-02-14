@@ -4,19 +4,14 @@
 using namespace std;
 
 class location;
-
+enum trafficlightstate {RED, ORANGE, GREEN};
+enum pedestrianstate {STOP, GO};
 class node;
-
 class road;
 
-struct l_a{ //NOTE clockwise angle's initial side is the segment itself
-  float angle;
-  float length;
-};
+extern vector<vector<float>> l_mtx_data;
+extern vector<vector<float>> a_mtx_data;
+extern vector<float> s_mtx_data;
 
-extern vector<vector<l_a>> la_mtx_data;
-extern SdFat sd;
-extern File file;
-
-vector<vector<l_a>> convert_f_TO_rd(string sdFILE);
-vector<road_act> shortestpath_algo(vector<vector<l_a>> mtx);
+vector<vector<float>> convert_f_TO_rd(string file);
+vector<road_act> shortestpath_algo(vector<vector<float>> mtx);

@@ -3,9 +3,10 @@
 #include "common.h"
 
 struct road_act{
-    float speed;
-    int lane;
+    float l;
     float next_turndeg;
+    float speed;
+    //int lane; TODO
 };
 
 class instruction{
