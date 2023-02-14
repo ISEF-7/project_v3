@@ -77,7 +77,7 @@ float toFloat(string s, int base){ //CHECKED
         return mid;
     }
 }
-vector<vector<float>> convert_f_TO_rd(string str){  //CHECKED 
+vector<vector<float>> convert_f_TO_2d(string str){  //CHECKED 
   vector<vector<float>> rd;
   int size=0;
   bool size_def = false;
@@ -105,7 +105,7 @@ vector<vector<float>> convert_f_TO_rd(string str){  //CHECKED
   else{cout << "conv[f,r/a] err"; return;}
 }
 
-vector<float> convert_f_TO_s(string str){ //CHECKED
+vector<float> convert_f_TO_1d(string str){ //CHECKED
   vector<float> s;
   float minipush;
   string stringdigits;
