@@ -11,7 +11,6 @@
 
 
 using namespace std;
-
 enum PROTOCOL {OFF_PROTOCOL = 0, ON_PROTOCOL = 1, BOOTING_PROTOCOL = 2, ROUTE_PROTOCOL = 3, SLAM_PROTOCOL = 4} SYS_STATUS;
 enum STATUS {OK, ERR};
 
@@ -220,16 +219,16 @@ void setup(){
 
     SYS_STATUS = BOOTING_PROTOCOL;
 
-    // pinMode(LED_BUILTIN, OUTPUT);
-    // for (int i = 1; i <= 5; i++){
-    //   LEDblink(LED_BUILTIN, 500);
-    // }
-    // cout << b << dotdotdot;
+    pinMode(LED_BUILTIN, OUTPUT);
+    for (int i = 1; i <= 5; i++){
+      LEDblink(LED_BUILTIN, 500);
+    }
+    cout << b << dotdotdot;
 
-    // boot_lidar(l);
-    // //boot_servo({m1,m2}); //FIXME no printing with this line of code
-    // boot_hub(hub);
-    // // TODO divide string file into multiple strings
+    boot_lidar(l);
+    //boot_servo({m1,m2}); //FIXME no printing with this line of code
+    boot_hub(hub);
+    // TODO divide string file into multiple stirngs
     // vector<vector<float>> l_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
     // vector<vector<float>> a_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
     // vector<vector<float>> s_mtx_data = convert_f_TO_rd(file);  //FIXME no printing with this line of code
