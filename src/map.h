@@ -13,5 +13,7 @@ extern vector<vector<float>> l_mtx_data;
 extern vector<vector<float>> a_mtx_data;
 extern vector<float> s_mtx_data;
 
-vector<vector<float>> convert_f_TO_rd(string file);
+vector<vector<float>> convert_f_TO_2d(string str);
+vector<float> convert_f_TO_1d(string str);
+vector<string> div(string str);
 vector<road_act> shortestpath_algo(vector<vector<float>> mtx);

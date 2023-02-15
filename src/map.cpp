@@ -122,6 +122,28 @@ vector<float> convert_f_TO_1d(string str){ //CHECKED
   return s;
   //else{cout << "conv[f,s] err"; return ;}
 }
+vector<string> div(string str){
+  int ind_a;
+  int ind_b;
+  int ind_c;
+  vector<string> ret_vec;
+  for(unsigned int i = 0; i<str.length();i++){
+    int count=0;
+    if(str.at(i) == '|'){
+      count++;
+      if (count == 1){
+        ind_a = i;
+      }
+      if (count == 2){
+        ind_b = i;
+      }
+      if (count == 3){
+        ind_c = i;
+      }
+    }
+  }
+  ret_vec = {str.substr(0,ind_a-1),str.substr(ind_a+1,ind_b-ind_a-1),str.substr(ind_b+1,ind_c-ind_a)};
+}
 vector<road_act> shortestpath_algo(vector<vector<float>> l_mtx, vector<vector<float>> a_mtx, vector<float> s_mtx){
     //TODO shortestpath algorithm
     //grab l_mtx
