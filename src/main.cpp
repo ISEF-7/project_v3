@@ -69,7 +69,7 @@ string tick = "Tick #";
 
 //////
 
-string file = "0 0 0 0% 0 0 0 0% 0 0 0 0% 0 0 0 0%";
+string file = "0 3.2 5.6%3.2 0 0%5.6 0 0%|0 30 0%30 0 0%0 0 0%|30 40 0%|";
   //TODO later add SD file reading
 
 
@@ -223,7 +223,7 @@ void setup(){
   cout << "^^^^^^^^^^^^^^^";
   delay(300);
   SYS_STATUS = ON_PROTOCOL;
-  while (SYS_STATUS == ON_PROTOCOL){
+  if (SYS_STATUS == ON_PROTOCOL){
 
     cout << "\n";
     cout << SETUP;
@@ -242,9 +242,10 @@ void setup(){
     int f = millis();
     int diff = (f-s);
     cout << " | 100% " << diff << "ms" << "\n";
-  //   // vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME no printing with this line of code
-  //   // vector<vector<float>> a_mtx_data = convert_f_TO_2d(div(file)[1]);  //FIXME no printing with this line of code
-  //   // vector<vector<float>> s_mtx_data = convert_f_TO_1d(div(file)[2]);  //FIXME no printing with this line of code
+    delay(500);
+    vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME error with this line of code
+    vector<vector<float>> a_mtx_data = convert_f_TO_2d(div(file)[1]);  //FIXME error with this line of code
+    vector<float> s_mtx_data = convert_f_TO_1d(div(file)[2]);  //FIXME error with this line of code
   //   // vector<road_act> f = shortestpath_algo(l_mtx_data, a_mtx_data, s_mtx_data);  //FIXME no printing with this line of code
   //   // vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(f);  //FIXME no printing with this line of code
   //   // vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(f);  //FIXME no printing with this line of code
