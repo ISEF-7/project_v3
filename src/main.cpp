@@ -55,10 +55,12 @@ string lb = "Booting RPLidar";
 
 string SETUP = "SETUP ///////\n";
 string b = "Booting | ";
+string route = "Calculating Route | ";
 string boot_results;
 
 string SETUP_FINISH  = "SETUP Completed ///////\n";
-string b_FINISH = "booting Completed";
+string b_FINISH = "Booting Completed ///////\n";
+string r_FINISH = "Route Found! ///////\n";
 
 string X = "X";
 string hash = "#";
@@ -108,7 +110,7 @@ void boot_hub(Hub h){
   if (hubstatus == OK && m1status == OK && m2status == OK && lstatus == OK){
     SYS_STATUS = ON_PROTOCOL;
     for (int i =0 ;i<2; i++){
-      cout << "#";
+      cout << hash;
       delay(10);
     }
   }
@@ -147,7 +149,7 @@ void boot_servo(vector<Servo> servolist){
     }
     servo_moduleCheck(servolist.at(i));
     for (int i =0 ;i<10; i++){
-      cout << "#";
+      cout << hash;
       delay(10);
     }
   };
@@ -163,7 +165,7 @@ void lidar_moduleCheck(RPLidar lidar){
     shutdown(lidar);
   }
   for (int i =0 ;i<10; i++){
-      cout << "#";
+      cout << hash;
       delay(10);
     }
 }
@@ -209,7 +211,12 @@ void tlidar_exec(){
 //   //TODO
 //   Serial.println(millis());
 // }
-
+void printhash(int s, int del){
+  for (int i = 0; i<s; i++){
+    cout << hash;
+    delay(del);
+  }
+}
 void LEDblink(int port, int delayms){
   digitalWrite(port, HIGH);
   delay(delayms);
@@ -220,10 +227,9 @@ void LEDblink(int port, int delayms){
 //////
 void setup(){
   Serial.begin(9600); //baud rate
-  cout << "^^^^^^^^^^^^^^^";
   delay(300);
   SYS_STATUS = ON_PROTOCOL;
-  if (SYS_STATUS == ON_PROTOCOL){
+  do {
 
     cout << "\n";
     cout << SETUP;
@@ -235,21 +241,28 @@ void setup(){
       LEDblink(LED_BUILTIN, 500);
     }
     cout << b;
-    int s = millis();
+    unsigned long a = millis();
     boot_lidar(l);
     boot_servo({m1,m2});
     boot_hub(hub);
-    int f = millis();
-    int diff = (f-s);
-    cout << " | 100% " << diff << "ms" << "\n";
+    unsigned long b = millis();
+    cout << " | 100% ";
+    cout << b_FINISH;
     delay(500);
+    cout << route;
     vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME error with this line of code
-    vector<vector<float>> a_mtx_data = convert_f_TO_2d(div(file)[1]);  //FIXME error with this line of code
-    vector<float> s_mtx_data = convert_f_TO_1d(div(file)[2]);  //FIXME error with this line of code
+    printhash(8,10);
+    // vector<vector<float>> a_mtx_data = convert_f_TO_2d(div(file)[1]);  //FIXME error with this line of code
+    printhash(8,10);
+    // vector<float> s_mtx_data = convert_f_TO_1d(div(file)[2]);  //FIXME error with this line of code
+    printhash(8,10);
   //   // vector<road_act> f = shortestpath_algo(l_mtx_data, a_mtx_data, s_mtx_data);  //FIXME no printing with this line of code
+    printhash(8,10);
   //   // vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(f);  //FIXME no printing with this line of code
+    printhash(8,10);
   //   // vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(f);  //FIXME no printing with this line of code
-
+    printhash(10,10);
+    cout << " | " << r_FINISH;
   //   // tmain->onRun(tmain_exec);
   //   // tlidar->onRun(tlidar_exec);
 
@@ -261,7 +274,9 @@ void setup(){
   //   // tc.add(tlidar);
   //   // tc.add(t_m_1);
   //   // tc.add(t_m_2);
-  }
+    cout << SETUP_FINISH;
+    break;
+  } while (SYS_STATUS == ON_PROTOCOL);
 }
 void loop() {
   // while (SYS_STATUS != OFF_PROTOCOL){
