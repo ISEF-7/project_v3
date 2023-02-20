@@ -1,13 +1,8 @@
 #include "common.h"
-#include "map.h"
-#include "m.h"
-#include <limits>
-#include <string>
 
 using namespace std;
 
 vector<road_act> actonslist;
-File MyReadFile;
 class node{
   public:
     int node_position;
@@ -23,8 +18,10 @@ class road{
     //vector<int> lanes;
     float speedLimit; 
 };
-string readFile(File s){ //TODO later add SD file reading
-  //return s;
+//TODO later add SD file reading
+int test(){
+  int x = 3;
+  return x;
 }
 bool check (vector<vector<float>> vec, int _square){ //CHECKED
   for (int i = 0; i < _square; i++){
@@ -89,7 +86,7 @@ vector<vector<float>> convert_f_TO_2d(string str){  //CHECKED
       stringdigits.push_back(str[i]);
     }
     if (str[i] == ' '){
-      minipush = toFloat(stringdigits,10); //get to float algorithm
+      minipush = toFloat(stringdigits,10);
       stringdigits = "";
       push.push_back(minipush);
       minipush = 0;
@@ -102,7 +99,7 @@ vector<vector<float>> convert_f_TO_2d(string str){  //CHECKED
     }
   }
   if (check(rd, size) == true){return rd;}
-  else{cout << "conv[f,r/a] err"; return;}
+  //else{cout << "conv[f,r/a] err"; return;}
 }
 
 vector<float> convert_f_TO_1d(string str){ //CHECKED
@@ -122,7 +119,7 @@ vector<float> convert_f_TO_1d(string str){ //CHECKED
   return s;
   //else{cout << "conv[f,s] err"; return ;}
 }
-vector<string> div(string str){
+vector<string> div(string str){ //CHECKED
   int ind_a;
   int ind_b;
   int ind_c;

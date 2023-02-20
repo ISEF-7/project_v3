@@ -1,6 +1,4 @@
 #include "common.h"
-#include "slam.h"
-#include "m.h"
 
 using namespace std;
 

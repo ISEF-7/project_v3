@@ -11,6 +11,11 @@
 #include "SdFat.h" //https://registry.platformio.org/libraries/greiman/SdFat
 #include <LinkedList.h> //https://registry.platformio.org/libraries/ivanseidel/LinkedList/installation
 
+#include "map.h"
+#include "m.h"
+#include "l.h"
+#include "slam.h"
+
 #define nameof(x) #x
 
 #ifndef NULL

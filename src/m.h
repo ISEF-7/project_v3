@@ -1,6 +1,6 @@
 #pragma once
 
-#include "common.h"
+using namespace std;
 
 struct road_act{
     float l;

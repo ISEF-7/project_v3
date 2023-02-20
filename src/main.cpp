@@ -1,8 +1,4 @@
 #include "common.h"
-#include "m.h"
-#include "map.h"
-#include "l.h"
-#include "slam.h"
 
 //define pins
 #define pin_L 0 //TODO set the values
@@ -241,16 +237,14 @@ void setup(){
       LEDblink(LED_BUILTIN, 500);
     }
     cout << b;
-    unsigned long a = millis();
     boot_lidar(l);
     boot_servo({m1,m2});
     boot_hub(hub);
-    unsigned long b = millis();
     cout << " | 100% ";
     cout << b_FINISH;
     delay(500);
     cout << route;
-    vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME error with this line of code
+    // vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME error with this line of code
     printhash(8,10);
     // vector<vector<float>> a_mtx_data = convert_f_TO_2d(div(file)[1]);  //FIXME error with this line of code
     printhash(8,10);
