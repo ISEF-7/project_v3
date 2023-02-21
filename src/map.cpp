@@ -23,6 +23,9 @@ int test(){
   int x = 3;
   return x;
 }
+vector<vector<float>> test2(){
+  return {{3,5},{1,3}};
+}
 bool check (vector<vector<float>> vec, int _square){ //CHECKED
   for (int i = 0; i < _square; i++){
     if (vec[i][i] != 0 || vec[i][i] != 0){

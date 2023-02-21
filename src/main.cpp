@@ -233,30 +233,68 @@ void setup(){
     SYS_STATUS = BOOTING_PROTOCOL;
 
     pinMode(LED_BUILTIN, OUTPUT);
-    for (int i = 1; i <= 5; i++){
-      LEDblink(LED_BUILTIN, 500);
-    }
+
+    digitalWrite(LED_BUILTIN, HIGH); 
     cout << b;
+    digitalWrite(LED_BUILTIN, LOW);
+
+    digitalWrite(LED_BUILTIN, HIGH); 
     boot_lidar(l);
+    digitalWrite(LED_BUILTIN, LOW); 
+
+    digitalWrite(LED_BUILTIN, HIGH); 
     boot_servo({m1,m2});
+    digitalWrite(LED_BUILTIN, LOW);
+
+    digitalWrite(LED_BUILTIN, HIGH);  
     boot_hub(hub);
+    digitalWrite(LED_BUILTIN, LOW);
+
     cout << " | 100% ";
+    
+    digitalWrite(LED_BUILTIN, HIGH); 
     cout << b_FINISH;
-    delay(500);
+    digitalWrite(LED_BUILTIN, LOW); 
+
+    digitalWrite(LED_BUILTIN, HIGH); 
     cout << route;
-    vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME code malfunction
+    digitalWrite(LED_BUILTIN, LOW); 
+
+    digitalWrite(LED_BUILTIN, HIGH); 
+    //vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME code malfunction
     printhash(8,10);
+    digitalWrite(LED_BUILTIN, LOW);
+
+    digitalWrite(LED_BUILTIN, HIGH);  
     // vector<vector<float>> a_mtx_data = convert_f_TO_2d(div(file)[1]);  //FIXME code malfunctions
     printhash(8,10);
+    digitalWrite(LED_BUILTIN, LOW); 
+    
+    digitalWrite(LED_BUILTIN, HIGH);
     // vector<float> s_mtx_data = convert_f_TO_1d(div(file)[2]);  //FIXME code malfunctions
     printhash(8,10);
+    digitalWrite(LED_BUILTIN, LOW); 
+    
+    digitalWrite(LED_BUILTIN, HIGH); 
   //   // vector<road_act> f = shortestpath_algo(l_mtx_data, a_mtx_data, s_mtx_data);  //FIXME code malfunctions
     printhash(8,10);
+    digitalWrite(LED_BUILTIN, LOW);
+
+    digitalWrite(LED_BUILTIN, HIGH);  
   //   // vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(f);  //FIXME code malfunctions
     printhash(8,10);
+    digitalWrite(LED_BUILTIN, LOW); 
+
+    digitalWrite(LED_BUILTIN, HIGH); 
   //   // vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(f);  //FIXME code malfunctions
     printhash(10,10);
-    cout << " | " << r_FINISH;
+    digitalWrite(LED_BUILTIN, LOW); 
+
+    cout << " | 100% ";
+
+    digitalWrite(LED_BUILTIN, HIGH); 
+    cout << r_FINISH;
+    digitalWrite(LED_BUILTIN, LOW); 
   //   // tmain->onRun(tmain_exec);
   //   // tlidar->onRun(tlidar_exec);
 
