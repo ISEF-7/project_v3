@@ -8,8 +8,6 @@
 #include <ThreadController.h> //https://registry.platformio.org/libraries/ivanseidel/Thread
 #include <RPLidar.h> //https://github.com/robopeak/rplidar_arduino
 #include <Servo.h> //https://registry.platformio.org/libraries/arduino-libraries/Servo
-#include "SdFat.h" //https://registry.platformio.org/libraries/greiman/SdFat
-#include <LinkedList.h> //https://registry.platformio.org/libraries/ivanseidel/LinkedList/installation
 
 #include "map.h"
 #include "m.h"
