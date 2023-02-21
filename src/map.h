@@ -9,10 +9,9 @@ enum pedestrianstate {STOP, GO};
 class node;
 class road;
 
-float toFloat(string s, int base);
-
 int test();
 vector<vector<float>> test2();
+vector<vector<int>> test31();
 
 vector<vector<float>> convert_f_TO_2d(string str);
 vector<float> convert_f_TO_1d(string str);

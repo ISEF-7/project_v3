@@ -261,7 +261,9 @@ void setup(){
     digitalWrite(LED_BUILTIN, LOW); 
 
     digitalWrite(LED_BUILTIN, HIGH); 
-    vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME code malfunction
+    cout << test3()[0];
+    cout << test31()[0][1];
+    //vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME code malfunction
     printhash(8,10);
     digitalWrite(LED_BUILTIN, LOW);
 
