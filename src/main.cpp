@@ -244,17 +244,17 @@ void setup(){
     cout << b_FINISH;
     delay(500);
     cout << route;
-    vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME error with this line of code
+    vector<vector<float>> l_mtx_data = convert_f_TO_2d(div(file)[0]);  //FIXME code malfunction
     printhash(8,10);
-    // vector<vector<float>> a_mtx_data = convert_f_TO_2d(div(file)[1]);  //FIXME error with this line of code
+    // vector<vector<float>> a_mtx_data = convert_f_TO_2d(div(file)[1]);  //FIXME code malfunctions
     printhash(8,10);
-    // vector<float> s_mtx_data = convert_f_TO_1d(div(file)[2]);  //FIXME error with this line of code
+    // vector<float> s_mtx_data = convert_f_TO_1d(div(file)[2]);  //FIXME code malfunctions
     printhash(8,10);
-  //   // vector<road_act> f = shortestpath_algo(l_mtx_data, a_mtx_data, s_mtx_data);  //FIXME no printing with this line of code
+  //   // vector<road_act> f = shortestpath_algo(l_mtx_data, a_mtx_data, s_mtx_data);  //FIXME code malfunctions
     printhash(8,10);
-  //   // vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(f);  //FIXME no printing with this line of code
+  //   // vector<instruction> MOTOR_1_INSTRUCTIONS = _m1(f);  //FIXME code malfunctions
     printhash(8,10);
-  //   // vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(f);  //FIXME no printing with this line of code
+  //   // vector<instruction> MOTOR_2_INSTRUCTIONS = _m2(f);  //FIXME code malfunctions
     printhash(10,10);
     cout << " | " << r_FINISH;
   //   // tmain->onRun(tmain_exec);
